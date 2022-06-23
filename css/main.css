@@ -2721,3 +2721,34 @@ ul.breadcrumb li:last-child {
     margin-bottom: 10px;
   }
 }
+.post-block {
+  background-color: #fff;
+  margin-bottom: 24px !important;
+  border-radius: 30px 30px 30px 30px !important;
+  box-shadow: 8px 7px 2px 0 rgba(0,0,0,0.12), 7px 4px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12) !important;
+}
+body {
+  background-image: url("imageswallhaven-3kywvv.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: 100% 100%;
+}
+.sidebar {
+  transition-duration: 0.4s;
+  opacity: 1;
+}
+.posts-expand .post-title-link {
+  color: #222;
+}
+.main-inner {
+  background-color: rgba(255,255,255,0);
+  padding: 0px 40px 40px 40px;
+}
+.header-inner,
+.sidebar-inner,
+.pagination {
+  background-color: #fff;
+  border-radius: 30px 30px 30px 30px !important;
+  box-shadow: 8px 7px 2px 0 rgba(0,0,0,0.12), 7px 4px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12) !important;
+}

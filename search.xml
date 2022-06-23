@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>categories</title>
+    <url>/2022/06/23/categories/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>about</title>
     <url>/2022/06/23/about/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>tags</title>
+    <url>/2022/06/23/tags/</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
@@ -22,15 +32,5 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>categories</title>
-    <url>/2022/06/23/categories/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>tags</title>
-    <url>/2022/06/23/tags/</url>
-    <content><![CDATA[]]></content>
   </entry>
 </search>

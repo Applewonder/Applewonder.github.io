@@ -218,7 +218,7 @@ body {
   height: 100%;
 }
 body {
-  background: var(--body-bg-color);
+  background: url("/images/wallhaven-3kywvv.jpg");
   box-sizing: border-box;
   color: var(--text-color);
   font-family: Lato, 'PingFang SC', 'Microsoft YaHei', sans-serif;
@@ -2629,7 +2629,7 @@ ul.breadcrumb li:last-child {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #427aaa;
+  background: #ffdb49;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);

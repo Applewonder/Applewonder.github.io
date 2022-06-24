@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>categories</title>
-    <url>/2022/06/23/categories/index/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>Hello World</title>
     <url>/2022/06/22/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -24,11 +19,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>about</title>
-    <url>/2022/06/23/about/index/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>tags</title>
     <url>/2022/06/23/tags/index/</url>
     <content><![CDATA[]]></content>
@@ -38,88 +28,40 @@
     <url>/2022/06/24/SAGCI-System-paper-review/SAGCI-System-paper-review/</url>
     <content><![CDATA[<p>Fun robot.</p>
 <span id="more"></span>
-
-# Problem
-
-Tasks in the real life: unstructured environments.
-
-Need to learn things quickly. 
-
-# Target
-
-Sample-Efficient, Generalizable, Compositional, and Incremental
-
-# File
-
-Unified Robot Description Format(URFD)
-
-# Related works
-
-Interactive Perception
-
-Differential Simulation
-
-Model-Based Reinforcement Learning
-
-# Model Established
-
-## Build Environment Initial Model
-
-The $t$th step point clouds: $\{P_t^i\}_{i = 1}^N \in \R^{N \times 3}$
-
-Taking advantage of a segmentation model to generate $\{M_t^i\}_{i = 1}^N$, $M_i^t \in \{1, 2, \cdots, K\}$, which help to segment the raw points to $K$ links in the URDF. $\{\mathscr{G}_t^j\}_{j = 1}^ K$ denotes these links. Based on that, using MainfoldPlus to help build meshes.
-
-The joints have 4 types, so we need $\{\mathscr{J}\} \in \mathscr{R}^{K \times K \times 4}$ to represent them. The corresponding joint spatial is $\mathscr{C} \in \mathscr{R}^{K \times K \times 9}$, about axis, origin, and orientation. Form a $ST$ to compose a URDF.
-
-## Interactive Perception
-
-The parameters: $\mathscr{Z} = \{\mathscr{J, C, M, \alpha^{sim}}\}$. The $\alpha^{sim}$ is the physical attributes of the object. $a_t^{IP}$ denotes the move of the $t$th step.
-
-First, in the simulation, we have:
-$$
-\bar{\mathscr{P}}_{t + 1}^i = \mathscr{F}^{sim}(\mathscr{P_t}, \mathscr{Z}, \mathscr{\varepsilon}, a_t^{IP})
-$$
-Second, in real world, we have:
-$$
-\widetilde{\mathscr{P}}_{t+1}^i = \mathscr{F}^{real}(\mathscr{P}_t^i, \mathscr{U}_t^i, \{\mathscr{P}_{t+1}^i\}_{i = 1}^N)
-$$
-The $\{\mathscr{U}_t^i\}_{i = 1}^N$ denotes the scene flow, which is generated from the $\{\{\mathscr{P}_t^i\}_{i = 1}^N, \{\mathscr{P}_{t+1}^i\}_{i = 1}^N\}$
-
-The  $\widetilde{\mathscr{P}}_{t+1}^i$ is the nearest point in the $\{\mathscr{P}_{t+1}^i\}$ of $\{\{\mathscr{U}_t^i\} + \{\mathscr{P}_t^i\}\}$ .
-
-
-
-Now consider the optimization of the $\mathscr{Z}$.
-
-The distance between the simulation and the real world is:
-$$
-\mathscr{L}_{t +1} = \frac{1}{N} \sum_{i = 1}^N\|\bar{\mathscr{P}}_{t + 1}^i - \widetilde{\mathscr{P}}_{t+1}^i\|^2
-$$
-The $\mathscr{F}^{sim}$ is differentiable, so we  could:
-$$
-\mathscr{Z}' = \mathscr{Z} - \lambda\frac{\partial \mathscr{L}_{t +1}}{\partial \mathscr{Z}}
-$$
-Remember $\mathscr{Z} = \{\mathscr{J, C, M, \alpha^{sim}}\}$, so it is actually optimizing these 4 matrixes. Reminding that the $\alpha^{sim}$ should be combined with $a_t^{IP}$ to calculate the joint state change $\delta q$.
-
-The improvement is:
-$$
-r_t = \mathscr{L}_{t+ 1}(\mathscr{Z}) - \mathscr{L}_{t+ 1}(\mathscr{Z'})
-$$
-During the simulation, the model adopted is Nimble, which is differentiable. 
-
-The point is, instead of just adopting the Nimble's prediction $s_{t+1}^{Nim}$, the model calculates the transition $\delta_{s_{t + 1}}$ from $s_t^{sim}, a_t, s_{t + 1}^{Nim}$. Then the result $s_{t +1}^{Nim} + \delta_{s_{t+1}}$ is the real $s_{t + 1}^{sim}$
-
-The backward propagation is just normal chain rules.
-
-# Experiment
-
-The judgment standard is mIoU, segmentation Acc., Rot, and Tran error.
-
-sf + noise and sf are better than the Initial model, sf+ ground truth is the best.
+<h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><p>Tasks in the real life: unstructured environments.</p>
+<p>Need to learn things quickly. </p>
+<h1 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h1><p>Sample-Efficient, Generalizable, Compositional, and Incremental</p>
+<h1 id="File"><a href="#File" class="headerlink" title="File"></a>File</h1><p>Unified Robot Description Format(URFD)</p>
+<h1 id="Related-works"><a href="#Related-works" class="headerlink" title="Related works"></a>Related works</h1><p>Interactive Perception</p>
+<p>Differential Simulation</p>
+<p>Model-Based Reinforcement Learning</p>
+<h1 id="Model-Established"><a href="#Model-Established" class="headerlink" title="Model Established"></a>Model Established</h1><h2 id="Build-Environment-Initial-Model"><a href="#Build-Environment-Initial-Model" class="headerlink" title="Build Environment Initial Model"></a>Build Environment Initial Model</h2><p>The $t$th step point clouds: ${P_t^i}_{i &#x3D; 1}^N \in \R^{N \times 3}$</p>
+<p>Taking advantage of a segmentation model to generate ${M_t^i}_{i &#x3D; 1}^N$, $M_i^t \in {1, 2, \cdots, K}$, which help to segment the raw points to $K$ links in the URDF. ${\mathscr{G}<em>t^j}</em>{j &#x3D; 1}^ K$ denotes these links. Based on that, using MainfoldPlus to help build meshes.</p>
+<p>The joints have 4 types, so we need ${\mathscr{J}} \in \mathscr{R}^{K \times K \times 4}$ to represent them. The corresponding joint spatial is $\mathscr{C} \in \mathscr{R}^{K \times K \times 9}$, about axis, origin, and orientation. Form a $ST$ to compose a URDF.</p>
+<h2 id="Interactive-Perception"><a href="#Interactive-Perception" class="headerlink" title="Interactive Perception"></a>Interactive Perception</h2><p>The parameters: $\mathscr{Z} &#x3D; {\mathscr{J, C, M, \alpha^{sim} }}$. The $\alpha^{sim}$ is the physical attributes of the object. $a_t^{IP}$ denotes the move of the $t$th step.</p>
+<p>First, in the simulation, we have:<br>$$<br>\bar{\mathscr{P} }<em>{t + 1}^i &#x3D; \mathscr{F}^{sim}(\mathscr{P_t}, \mathscr{Z}, \mathscr{\varepsilon}, a_t^{IP})<br>$$<br>Second, in real world, we have:<br>$$<br>\widetilde{\mathscr{P} }</em>{t+1}^i &#x3D; \mathscr{F}^{real}(\mathscr{P}<em>t^i, \mathscr{U}<em>t^i, {\mathscr{P}</em>{t+1}^i}</em>{i &#x3D; 1}^N)<br>$$<br>The ${\mathscr{U}<em>t^i}</em>{i &#x3D; 1}^N$ denotes the scene flow, which is generated from the ${{\mathscr{P}<em>t^i}</em>{i &#x3D; 1}^N, {\mathscr{P}<em>{t+1}^i}</em>{i &#x3D; 1}^N}$</p>
+<p>The  $\widetilde{\mathscr{P} }<em>{t+1}^i$ is the nearest point in the ${\mathscr{P}</em>{t+1}^i}$ of ${{\mathscr{U}_t^i} + {\mathscr{P}_t^i}}$ .</p>
+<p>Now consider the optimization of the $\mathscr{Z}$.</p>
+<p>The distance between the simulation and the real world is:<br>$$<br>\mathscr{L}<em>{t +1} &#x3D; \frac{1}{N} \sum</em>{i &#x3D; 1}^N|\bar{\mathscr{P} }<em>{t + 1}^i - \widetilde{\mathscr{P} }</em>{t+1}^i|^2<br>$$<br>The $\mathscr{F}^{sim}$ is differentiable, so we  could:<br>$$<br>\mathscr{Z}’ &#x3D; \mathscr{Z} - \lambda\frac{\partial \mathscr{L}_{t +1} }{\partial \mathscr{Z} }<br>$$<br>Remember $\mathscr{Z} &#x3D; {\mathscr{J, C, M, \alpha^{sim} }}$, so it is actually optimizing these 4 matrixes. Reminding that the $\alpha^{sim}$ should be combined with $a_t^{IP}$ to calculate the joint state change $\delta q$.</p>
+<p>The improvement is:<br>$$<br>r_t &#x3D; \mathscr{L}<em>{t+ 1}(\mathscr{Z}) - \mathscr{L}</em>{t+ 1}(\mathscr{Z’})<br>$$<br>During the simulation, the model adopted is Nimble, which is differentiable. </p>
+<p>The point is, instead of just adopting the Nimble’s prediction $s_{t+1}^{Nim}$, the model calculates the transition $\delta_{s_{t + 1} }$ from $s_t^{sim}, a_t, s_{t + 1}^{Nim}$. Then the result $s_{t +1}^{Nim} + \delta_{s_{t+1} }$ is the real $s_{t + 1}^{sim}$</p>
+<p>The backward propagation is just normal chain rules.</p>
+<h1 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h1><p>The judgment standard is mIoU, segmentation Acc., Rot, and Tran error.</p>
+<p>sf + noise and sf are better than the Initial model, sf+ ground truth is the best.</p>
 ]]></content>
       <tags>
         <tag>Robot</tag>
         <tag>Machine Learning</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>about</title>
+    <url>/2022/06/23/about/index/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>categories</title>
+    <url>/2022/06/23/categories/index/</url>
+    <content><![CDATA[]]></content>
   </entry>
 </search>

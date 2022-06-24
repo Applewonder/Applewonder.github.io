@@ -1,26 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>categories</title>
-    <url>/2022/06/23/categories/index/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>about</title>
-    <url>/2022/06/23/about/index/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>tags</title>
-    <url>/2022/06/23/tags/index/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>SAGCI-System paper review</title>
     <url>/2022/06/24/SAGCI-System-paper-review/SAGCI-System-paper-review/</url>
-    <content><![CDATA[<p>Fun robot.</p>
-<span id="more"></span>
-<h1 id="problem"><a class="markdownIt-Anchor" href="#problem"></a> Problem</h1>
+    <content><![CDATA[<h1 id="problem"><a class="markdownIt-Anchor" href="#problem"></a> Problem</h1>
 <p>Tasks in the real life: unstructured environments.</p>
 <p>Need to learn things quickly.</p>
 <h1 id="target"><a class="markdownIt-Anchor" href="#target"></a> Target</h1>

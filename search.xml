@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>about</title>
+    <url>/2022/06/23/about/index/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>tags</title>
+    <url>/2022/06/23/tags/index/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>categories</title>
     <url>/2022/06/23/categories/index/</url>
     <content><![CDATA[]]></content>
@@ -28,9 +38,9 @@ The $t$ th step point clouds: $\{P_t^i\}_{i = 1}^N \in \mathscr{R}^{N \times 3}$
 
 Taking advantage of a segmentation model to generate $\{M_t^i\}_{i = 1}^N$, $M_i^t \in \{1, 2, \cdots, K\}$, which help to segment the raw points to $K$ links in the URDF. $\{\mathscr{G}_t^j\}_{j = 1}^ K$ denotes these links. Based on that, using MainfoldPlus to help build meshes.
 
-The joints have 4 types, so we need $\{\mathscr{J}\} \in \mathscr{R}^{K \times K \times 4}$ to represent them. The corresponding joint spatial is $\mathscr{C} \in \mathscr{R}^{K \times K \times 9}$, about axis, origin, and orientation. Form a $ST$ to compose a URDF.
+The joints have 4 types, so we need $\{\mathscr{J}\} \in \mathscr{R}^{K \times K \times 4}$ to represent them. The corresponding joint spatial is $\mathscr{C} \in \mathscr{R}^{K \times K \times 9}$, about axis, origin, and orientation. Form a $ST$ to compose a URDF.   
 
-## Interactive Perception
+## Interactive Perception  
 
 The parameters: $\mathscr{Z} = \{\mathscr{J, C, M, \alpha^{sim} }\}$. The $\alpha^{sim}$ is the physical attributes of the object. $a_t^{IP}$ denotes the move of the $t$th step.
 
@@ -79,15 +89,5 @@ The backward propagation is just normal chain rules.
         <tag>Robot</tag>
         <tag>Machine Learning</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>tags</title>
-    <url>/2022/06/23/tags/index/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>about</title>
-    <url>/2022/06/23/about/index/</url>
-    <content><![CDATA[]]></content>
   </entry>
 </search>

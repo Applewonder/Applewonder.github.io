@@ -14,7 +14,7 @@
 {{ next_data('calendar',
   theme.calendar if page.type === 'schedule' else '')
 }}
-<title>{{ __('title.archive') }} | {{ title }}</title>
+<title>{{ __('title.tag') }}: {{ page.tag }} | {{ title }}</title>
   {{ partial('_third-party/analytics/index.njk', {}, {cache: theme.cache.enable}) }}
   {{- next_inject('head') }}
   <noscript>
@@ -42,7 +42,7 @@
 
     {{ partial('_partials/widgets.njk', {}, {cache: theme.cache.enable}) }}
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner tag posts-collapse">
 
 
   
@@ -51,11 +51,13 @@
   <div class="post-block">
     <div class="post-content">
       <div class="collection-title">
-        <span class="collection-header">{{ __('cheers.' + cheers) }}! {{ _p('counter.archive_posts', site.posts.length) }} {{ __('keep_on') }}</span>
+        <h1 class="collection-header">
+          {{- page.tag }}
+          <small>{{ __('title.tag') }}</small>
+        </h1>
       </div>
 
       {{ post_template.render(page.posts) }}
-
     </div>
   </div>
   

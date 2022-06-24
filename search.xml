@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>categories</title>
+    <url>/2022/06/23/categories/index/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>about</title>
     <url>/2022/06/23/about/index/</url>
     <content><![CDATA[]]></content>
@@ -8,11 +13,6 @@
   <entry>
     <title>tags</title>
     <url>/2022/06/23/tags/index/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>categories</title>
-    <url>/2022/06/23/categories/index/</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
@@ -40,7 +40,7 @@ Taking advantage of a segmentation model to generate $\{M_t^i\}_{i = 1}^N$, $M_i
 
 The joints have 4 types, so we need $\{\mathscr{J}\} \in \mathscr{R}^{K \times K \times 4}$ to represent them. The corresponding joint spatial is $\mathscr{C} \in \mathscr{R}^{K \times K \times 9}$, about axis, origin, and orientation. Form a $ST$ to compose a URDF.   
 
-## Interactive Perception  
+<h2>Interactive Perception</h2>  
 
 The parameters: $\mathscr{Z} = \{\mathscr{J, C, M, \alpha^{sim} }\}$. The $\alpha^{sim}$ is the physical attributes of the object. $a_t^{IP}$ denotes the move of the $t$th step.
 
@@ -83,7 +83,7 @@ The backward propagation is just normal chain rules.
 
 <h1 id="experiment"><a class="markdownIt-Anchor" href="#experiment"></a> Experiment</h1>
 <p>The judgment standard is mIoU, segmentation Acc., Rot, and Tran error.</p>
-<p>sf + noise and sf are better than the Initial model, sf+ ground truth is the best.</p>
+<p>sf + noise and sf are better than the Initial model, sf + ground truth is the best.</p>
 ]]></content>
       <tags>
         <tag>Robot</tag>

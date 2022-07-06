@@ -20,25 +20,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"applewonder.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Applemandiath&#39;s blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Always Apple">
-<meta property="og:url" content="http://applewonder.github.io/index.html">
+    <meta name="description" content="Simple Grammar of the LLVM IR  Type i32: 32-bits int i1: 1-bit int void: nothing, just take a place label: label a block, help the machine to jump Array: an Array  Function Function Definition: defin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Build a Compiler from Scratch（IR Basic）">
+<meta property="og:url" content="http://applewonder.github.io/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/Build-a-Compiler-from-Scratch(IR%20Basic)/index.html">
 <meta property="og:site_name" content="Always Apple">
-<meta property="og:description" content="Applemandiath&#39;s blog">
+<meta property="og:description" content="Simple Grammar of the LLVM IR  Type i32: 32-bits int i1: 1-bit int void: nothing, just take a place label: label a block, help the machine to jump Array: an Array  Function Function Definition: defin">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-07-05T08:10:24.000Z">
+<meta property="article:modified_time" content="2022-07-06T17:49:35.401Z">
 <meta property="article:author" content="Applemandiath">
+<meta property="article:tag" content="Compiler">
+<meta property="article:tag" content="IR">
+<meta property="article:tag" content="LLVM">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://applewonder.github.io/">
+<link rel="canonical" href="http://applewonder.github.io/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/Build-a-Compiler-from-Scratch(IR%20Basic)/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"en","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://applewonder.github.io/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/Build-a-Compiler-from-Scratch(IR%20Basic)/","path":"2022/07/05/Build-a-Compiler-from-Scratch(IR Basic)/Build-a-Compiler-from-Scratch(IR Basic)/","title":"Build a Compiler from Scratch（IR Basic）"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Always Apple</title>
+<title>Build a Compiler from Scratch（IR Basic） | Always Apple</title>
   
 
 
@@ -68,7 +73,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">Always Apple</h1>
+      <p class="site-title">Always Apple</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -100,7 +105,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -113,6 +118,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#simple-grammar-of-the-llvm-ir"><span class="nav-number">1.</span> <span class="nav-text"> Simple Grammar of the LLVM IR</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#type"><span class="nav-number">1.1.</span> <span class="nav-text"> Type</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#function"><span class="nav-number">1.2.</span> <span class="nav-text"> Function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#basic-block"><span class="nav-number">1.3.</span> <span class="nav-text"> Basic Block</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.4.</span> <span class="nav-text"> </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#terminator-instruction"><span class="nav-number">1.5.</span> <span class="nav-text"> Terminator Instruction</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#the-basic-structure-of-the-llvm-ir"><span class="nav-number">2.</span> <span class="nav-text"> The basic Structure of the LLVM IR</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -166,16 +172,17 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="http://applewonder.github.io/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/Build-a-Compiler-from-Scratch(IR%20Basic)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -189,13 +196,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Always Apple">
+      <meta itemprop="name" content="Build a Compiler from Scratch（IR Basic） | Always Apple">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/Build-a-Compiler-from-Scratch(IR%20Basic)/" class="post-title-link" itemprop="url">Build a Compiler from Scratch（IR Basic）</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          Build a Compiler from Scratch（IR Basic）
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -263,7 +270,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="simple-grammar-of-the-llvm-ir"><a class="markdownIt-Anchor" href="#simple-grammar-of-the-llvm-ir"></a> Simple Grammar of the LLVM IR</h1>
+        <h1 id="simple-grammar-of-the-llvm-ir"><a class="markdownIt-Anchor" href="#simple-grammar-of-the-llvm-ir"></a> Simple Grammar of the LLVM IR</h1>
 <h2 id="type"><a class="markdownIt-Anchor" href="#type"></a> Type</h2>
 <p><code>i32</code>: 32-bits int</p>
 <p><code>i1</code>: 1-bit int</p>
@@ -295,7 +302,6 @@
 <p><code>Function</code> inherited from <code>Constant</code> by multiple inheritances, so <code>Function</code> is also  <code>Value</code> and <code>User</code>.</p>
 <p>![The Structure](D:\Apple Blog\source_posts\Build-a-Compiler-from-Scratch(IR Basic)\Value.png)</p>
 
-      
     </div>
 
     
@@ -303,129 +309,23 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
+          <div class="post-tags">
+              <a href="/tags/Compiler/" rel="tag"># Compiler</a>
+              <a href="/tags/IR/" rel="tag"># IR</a>
+              <a href="/tags/LLVM/" rel="tag"># LLVM</a>
+          </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://applewonder.github.io/2022/06/24/SAGCI-System-paper-review/SAGCI-System-paper-review/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/96537531_p0_master1200.jpg">
-      <meta itemprop="name" content="Applemandiath">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Always Apple">
-      <meta itemprop="description" content="Applemandiath's blog">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Always Apple">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/06/24/SAGCI-System-paper-review/SAGCI-System-paper-review/" class="post-title-link" itemprop="url">SAGCI-System paper review</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-06-24 16:15:52" itemprop="dateCreated datePublished" datetime="2022-06-24T16:15:52+08:00">2022-06-24</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-07-07 01:49:29" itemprop="dateModified" datetime="2022-07-07T01:49:29+08:00">2022-07-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Robot-Paper-Review/" itemprop="url" rel="index"><span itemprop="name">Robot Paper Review</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline: </span>
-  
-    <a title="waline" href="/2022/06/24/SAGCI-System-paper-review/SAGCI-System-paper-review/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/2022/06/24/SAGCI-System-paper-review/SAGCI-System-paper-review/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="Symbols count in article">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>2.7k</span>
-    </span>
-    <span class="post-meta-item" title="Reading time">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>2 mins.</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Fun Robot</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/06/24/SAGCI-System-paper-review/SAGCI-System-paper-review/">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/06/24/SAGCI-System-paper-review/SAGCI-System-paper-review/" rel="prev" title="SAGCI-System paper review">
+                  <i class="fa fa-chevron-left"></i> SAGCI-System paper review
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
     </footer>
   </article>
 </div>
@@ -434,6 +334,8 @@
 
 
 
+
+    <div class="comments" id="waline"></div>
 </div>
   </main>
 
@@ -490,7 +392,7 @@
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"blog-waline-server.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"placeholder":"Hello","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/"}</script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"blog-waline-server.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"placeholder":"Hello","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/Build-a-Compiler-from-Scratch(IR%20Basic)/"}</script>
 <link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
 <script>
 document.addEventListener('page:loaded', () => {

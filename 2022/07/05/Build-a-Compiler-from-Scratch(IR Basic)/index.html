@@ -20,27 +20,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"applewonder.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Simple Grammar of the LLVM IR  Type i32: 32-bits int i1: 1-bit int void: nothing, just take a place label: label a block, help the machine to jump Array: an Array  Function Function Definition: defin">
+    <meta name="description" content="Study LLVM to build our kemomimi compiler">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Build a Compiler from Scratch（IR Basic）">
-<meta property="og:url" content="http://applewonder.github.io/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/Build-a-Compiler-from-Scratch(IR%20Basic)/index.html">
+<meta property="og:url" content="http://applewonder.github.io/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/index.html">
 <meta property="og:site_name" content="Always Apple">
-<meta property="og:description" content="Simple Grammar of the LLVM IR  Type i32: 32-bits int i1: 1-bit int void: nothing, just take a place label: label a block, help the machine to jump Array: an Array  Function Function Definition: defin">
+<meta property="og:description" content="Study LLVM to build our kemomimi compiler">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://applewonder.github.io/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/Value.png">
 <meta property="article:published_time" content="2022-07-05T08:10:24.000Z">
-<meta property="article:modified_time" content="2022-07-06T17:49:35.401Z">
+<meta property="article:modified_time" content="2022-07-06T18:04:21.457Z">
 <meta property="article:author" content="Applemandiath">
 <meta property="article:tag" content="Compiler">
 <meta property="article:tag" content="IR">
 <meta property="article:tag" content="LLVM">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://applewonder.github.io/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/Value.png">
 
 
-<link rel="canonical" href="http://applewonder.github.io/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/Build-a-Compiler-from-Scratch(IR%20Basic)/">
+<link rel="canonical" href="http://applewonder.github.io/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://applewonder.github.io/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/Build-a-Compiler-from-Scratch(IR%20Basic)/","path":"2022/07/05/Build-a-Compiler-from-Scratch(IR Basic)/Build-a-Compiler-from-Scratch(IR Basic)/","title":"Build a Compiler from Scratch（IR Basic）"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://applewonder.github.io/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/","path":"2022/07/05/Build-a-Compiler-from-Scratch(IR Basic)/","title":"Build a Compiler from Scratch（IR Basic）"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>Build a Compiler from Scratch（IR Basic） | Always Apple</title>
@@ -118,7 +120,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#simple-grammar-of-the-llvm-ir"><span class="nav-number">1.</span> <span class="nav-text"> Simple Grammar of the LLVM IR</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#type"><span class="nav-number">1.1.</span> <span class="nav-text"> Type</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#function"><span class="nav-number">1.2.</span> <span class="nav-text"> Function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#basic-block"><span class="nav-number">1.3.</span> <span class="nav-text"> Basic Block</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.4.</span> <span class="nav-text"> </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#terminator-instruction"><span class="nav-number">1.5.</span> <span class="nav-text"> Terminator Instruction</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#the-basic-structure-of-the-llvm-ir"><span class="nav-number">2.</span> <span class="nav-text"> The basic Structure of the LLVM IR</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Simple-Grammar-of-the-LLVM-IR"><span class="nav-number">1.</span> <span class="nav-text">Simple Grammar of the LLVM IR</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Type"><span class="nav-number">1.1.</span> <span class="nav-text">Type</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Function"><span class="nav-number">1.2.</span> <span class="nav-text">Function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Basic-Block"><span class="nav-number">1.3.</span> <span class="nav-text">Basic Block</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.4.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Terminator-Instruction"><span class="nav-number">1.5.</span> <span class="nav-text">Terminator Instruction</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-basic-Structure-of-the-LLVM-IR"><span class="nav-number">2.</span> <span class="nav-text">The basic Structure of the LLVM IR</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -183,7 +185,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://applewonder.github.io/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/Build-a-Compiler-from-Scratch(IR%20Basic)/">
+    <link itemprop="mainEntityOfPage" href="http://applewonder.github.io/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/96537531_p0_master1200.jpg">
@@ -197,7 +199,7 @@
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
       <meta itemprop="name" content="Build a Compiler from Scratch（IR Basic） | Always Apple">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Study LLVM to build our kemomimi compiler">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -219,7 +221,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-07-07 01:49:35" itemprop="dateModified" datetime="2022-07-07T01:49:35+08:00">2022-07-07</time>
+      <time title="Modified: 2022-07-07 02:04:21" itemprop="dateModified" datetime="2022-07-07T02:04:21+08:00">2022-07-07</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -240,8 +242,8 @@
     </span>
     <span class="post-meta-item-text">Waline: </span>
   
-    <a title="waline" href="/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/Build-a-Compiler-from-Scratch(IR%20Basic)/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/Build-a-Compiler-from-Scratch(IR%20Basic)/" itemprop="commentCount"></span>
+    <a title="waline" href="/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -252,7 +254,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>978</span>
+      <span>902</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
@@ -263,6 +265,7 @@
     </span>
 </div>
 
+            <div class="post-description">Study LLVM to build our kemomimi compiler</div>
         </div>
       </header>
 
@@ -270,37 +273,38 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="simple-grammar-of-the-llvm-ir"><a class="markdownIt-Anchor" href="#simple-grammar-of-the-llvm-ir"></a> Simple Grammar of the LLVM IR</h1>
-<h2 id="type"><a class="markdownIt-Anchor" href="#type"></a> Type</h2>
-<p><code>i32</code>: 32-bits int</p>
-<p><code>i1</code>: 1-bit int</p>
-<p><code>void</code>: nothing, just take a place</p>
-<p><code>label</code>: label a block, help the machine to jump</p>
-<p><code>Array</code>: an Array</p>
-<h2 id="function"><a class="markdownIt-Anchor" href="#function"></a> Function</h2>
-<p>Function Definition: <code>define i32 @main(i32 %a,i32 %b, \cdots) &#123;&#125;</code></p>
+        <p>&lt;! –more–&gt;</p>
+<h1 id="Simple-Grammar-of-the-LLVM-IR"><a href="#Simple-Grammar-of-the-LLVM-IR" class="headerlink" title="Simple Grammar of the LLVM IR"></a>Simple Grammar of the LLVM IR</h1><h2 id="Type"><a href="#Type" class="headerlink" title="Type"></a>Type</h2><p><code>i32</code>: 32-bits int  </p>
+<p><code>i1</code>: 1-bit int  </p>
+<p><code>void</code>: nothing, just take a place  </p>
+<p><code>label</code>: label a block, help the machine to jump  </p>
+<p><code>Array</code>: an Array </p>
+<h2 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h2><p>Function Definition: <code>define i32 @main(i32 %a,i32 %b, \cdots) &#123;&#125;</code>   </p>
 <p>Function Declaration: <code>declare void @putarray(i32, i32*)</code></p>
-<h2 id="basic-block"><a class="markdownIt-Anchor" href="#basic-block"></a> Basic Block</h2>
-<p>Wrapping a bunch of instructions and end with a terminator instruction, without any loop or brunch. Just move linearly.</p>
+<h2 id="Basic-Block"><a href="#Basic-Block" class="headerlink" title="Basic Block"></a>Basic Block</h2><p>Wrapping a bunch of instructions and end with a terminator instruction, without any loop or brunch. Just move linearly. </p>
 <blockquote>
 <p>Attention： A basic block could have a <code>call</code> instruction in it.</p>
 </blockquote>
-<h2 id=""><a class="markdownIt-Anchor" href="#"></a> </h2>
-<h2 id="terminator-instruction"><a class="markdownIt-Anchor" href="#terminator-instruction"></a> Terminator Instruction</h2>
-<p>e.g. :<code>ret</code> <code>br</code></p>
-<p><code>ret</code>:</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="Terminator-Instruction"><a href="#Terminator-Instruction" class="headerlink" title="Terminator Instruction"></a>Terminator Instruction</h2><p>e.g. :<code>ret</code> <code>br</code></p>
+<p><code>ret</code>: </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">return 0</span><br><span class="line"></span><br><span class="line">ret i32 0</span><br></pre></td></tr></table></figure>
+
+
+
 <p><code>br</code></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if (a = b) &#123;&#125; else &#123;&#125;</span><br><span class="line"></span><br><span class="line">br i1 %9, label %10, label %11</span><br></pre></td></tr></table></figure>
+
 <p>The <code>%9</code> should be set ahead with instructions like <code>icmp</code> . %10 and %11 are two labeled blocks.</p>
 <p>Or just:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">br label %10 when it finishes a block</span><br></pre></td></tr></table></figure>
-<h1 id="the-basic-structure-of-the-llvm-ir"><a class="markdownIt-Anchor" href="#the-basic-structure-of-the-llvm-ir"></a> The basic Structure of the LLVM IR</h1>
-<p>The most important classes are Value, Use, and User.</p>
-<p><code>BasicBlock</code>, <code>Argument</code>, <code>User</code>  are inherited from  <code>Value</code>.</p>
+
+
+
+<h1 id="The-basic-Structure-of-the-LLVM-IR"><a href="#The-basic-Structure-of-the-LLVM-IR" class="headerlink" title="The basic Structure of the LLVM IR"></a>The basic Structure of the LLVM IR</h1><p>The most important classes are Value, Use, and User.</p>
+<p><code>BasicBlock</code>, <code>Argument</code>, <code>User</code>  are inherited from  <code>Value</code>. </p>
 <p><code>Constant</code> and  <code>Instruction</code> are inherited from  <code>User</code>.</p>
 <p><code>Function</code> inherited from <code>Constant</code> by multiple inheritances, so <code>Function</code> is also  <code>Value</code> and <code>User</code>.</p>
-<p>![The Structure](D:\Apple Blog\source_posts\Build-a-Compiler-from-Scratch(IR Basic)\Value.png)</p>
+<p><img src="/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/Value.png" alt="The Structure"></p>
 
     </div>
 
@@ -319,7 +323,7 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/06/24/SAGCI-System-paper-review/SAGCI-System-paper-review/" rel="prev" title="SAGCI-System paper review">
+                <a href="/2022/06/24/SAGCI-System-paper-review/" rel="prev" title="SAGCI-System paper review">
                   <i class="fa fa-chevron-left"></i> SAGCI-System paper review
                 </a>
             </div>
@@ -392,7 +396,7 @@
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"blog-waline-server.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"placeholder":"Hello","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/Build-a-Compiler-from-Scratch(IR%20Basic)/"}</script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"blog-waline-server.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"placeholder":"Hello","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/"}</script>
 <link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
 <script>
 document.addEventListener('page:loaded', () => {

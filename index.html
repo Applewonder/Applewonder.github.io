@@ -176,7 +176,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://applewonder.github.io/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/Build-a-Compiler-from-Scratch(IR%20Basic)/">
+    <link itemprop="mainEntityOfPage" href="http://applewonder.github.io/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/96537531_p0_master1200.jpg">
@@ -194,7 +194,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/Build-a-Compiler-from-Scratch(IR%20Basic)/" class="post-title-link" itemprop="url">Build a Compiler from Scratch（IR Basic）</a>
+          <a href="/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/" class="post-title-link" itemprop="url">Build a Compiler from Scratch（IR Basic）</a>
         </h2>
 
         <div class="post-meta-container">
@@ -212,7 +212,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-07-07 01:49:35" itemprop="dateModified" datetime="2022-07-07T01:49:35+08:00">2022-07-07</time>
+      <time title="Modified: 2022-07-07 02:04:21" itemprop="dateModified" datetime="2022-07-07T02:04:21+08:00">2022-07-07</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -233,8 +233,8 @@
     </span>
     <span class="post-meta-item-text">Waline: </span>
   
-    <a title="waline" href="/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/Build-a-Compiler-from-Scratch(IR%20Basic)/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/Build-a-Compiler-from-Scratch(IR%20Basic)/" itemprop="commentCount"></span>
+    <a title="waline" href="/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -245,7 +245,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>978</span>
+      <span>902</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
@@ -263,38 +263,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="simple-grammar-of-the-llvm-ir"><a class="markdownIt-Anchor" href="#simple-grammar-of-the-llvm-ir"></a> Simple Grammar of the LLVM IR</h1>
-<h2 id="type"><a class="markdownIt-Anchor" href="#type"></a> Type</h2>
-<p><code>i32</code>: 32-bits int</p>
-<p><code>i1</code>: 1-bit int</p>
-<p><code>void</code>: nothing, just take a place</p>
-<p><code>label</code>: label a block, help the machine to jump</p>
-<p><code>Array</code>: an Array</p>
-<h2 id="function"><a class="markdownIt-Anchor" href="#function"></a> Function</h2>
-<p>Function Definition: <code>define i32 @main(i32 %a,i32 %b, \cdots) &#123;&#125;</code></p>
-<p>Function Declaration: <code>declare void @putarray(i32, i32*)</code></p>
-<h2 id="basic-block"><a class="markdownIt-Anchor" href="#basic-block"></a> Basic Block</h2>
-<p>Wrapping a bunch of instructions and end with a terminator instruction, without any loop or brunch. Just move linearly.</p>
-<blockquote>
-<p>Attention： A basic block could have a <code>call</code> instruction in it.</p>
-</blockquote>
-<h2 id=""><a class="markdownIt-Anchor" href="#"></a> </h2>
-<h2 id="terminator-instruction"><a class="markdownIt-Anchor" href="#terminator-instruction"></a> Terminator Instruction</h2>
-<p>e.g. :<code>ret</code> <code>br</code></p>
-<p><code>ret</code>:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">return 0</span><br><span class="line"></span><br><span class="line">ret i32 0</span><br></pre></td></tr></table></figure>
-<p><code>br</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if (a = b) &#123;&#125; else &#123;&#125;</span><br><span class="line"></span><br><span class="line">br i1 %9, label %10, label %11</span><br></pre></td></tr></table></figure>
-<p>The <code>%9</code> should be set ahead with instructions like <code>icmp</code> . %10 and %11 are two labeled blocks.</p>
-<p>Or just:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">br label %10 when it finishes a block</span><br></pre></td></tr></table></figure>
-<h1 id="the-basic-structure-of-the-llvm-ir"><a class="markdownIt-Anchor" href="#the-basic-structure-of-the-llvm-ir"></a> The basic Structure of the LLVM IR</h1>
-<p>The most important classes are Value, Use, and User.</p>
-<p><code>BasicBlock</code>, <code>Argument</code>, <code>User</code>  are inherited from  <code>Value</code>.</p>
-<p><code>Constant</code> and  <code>Instruction</code> are inherited from  <code>User</code>.</p>
-<p><code>Function</code> inherited from <code>Constant</code> by multiple inheritances, so <code>Function</code> is also  <code>Value</code> and <code>User</code>.</p>
-<p>![The Structure](D:\Apple Blog\source_posts\Build-a-Compiler-from-Scratch(IR Basic)\Value.png)</p>
-
+          <p>Study LLVM to build our kemomimi compiler</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -320,7 +297,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://applewonder.github.io/2022/06/24/SAGCI-System-paper-review/SAGCI-System-paper-review/">
+    <link itemprop="mainEntityOfPage" href="http://applewonder.github.io/2022/06/24/SAGCI-System-paper-review/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/96537531_p0_master1200.jpg">
@@ -338,7 +315,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/06/24/SAGCI-System-paper-review/SAGCI-System-paper-review/" class="post-title-link" itemprop="url">SAGCI-System paper review</a>
+          <a href="/2022/06/24/SAGCI-System-paper-review/" class="post-title-link" itemprop="url">SAGCI-System paper review</a>
         </h2>
 
         <div class="post-meta-container">
@@ -377,8 +354,8 @@
     </span>
     <span class="post-meta-item-text">Waline: </span>
   
-    <a title="waline" href="/2022/06/24/SAGCI-System-paper-review/SAGCI-System-paper-review/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/2022/06/24/SAGCI-System-paper-review/SAGCI-System-paper-review/" itemprop="commentCount"></span>
+    <a title="waline" href="/2022/06/24/SAGCI-System-paper-review/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2022/06/24/SAGCI-System-paper-review/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -410,7 +387,7 @@
           <p>Fun Robot</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/06/24/SAGCI-System-paper-review/SAGCI-System-paper-review/">
+              <a class="btn" href="/2022/06/24/SAGCI-System-paper-review/">
                 Read more &raquo;
               </a>
             </div>

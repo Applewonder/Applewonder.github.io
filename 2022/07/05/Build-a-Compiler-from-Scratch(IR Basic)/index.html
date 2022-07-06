@@ -29,7 +29,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://applewonder.github.io/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/Value.png">
 <meta property="article:published_time" content="2022-07-05T08:10:24.000Z">
-<meta property="article:modified_time" content="2022-07-06T18:11:42.129Z">
+<meta property="article:modified_time" content="2022-07-06T18:13:28.758Z">
 <meta property="article:author" content="Applemandiath">
 <meta property="article:tag" content="Compiler">
 <meta property="article:tag" content="IR">
@@ -120,7 +120,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Simple-Grammar-of-the-LLVM-IR"><span class="nav-number">1.</span> <span class="nav-text">Simple Grammar of the LLVM IR</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Type"><span class="nav-number">1.1.</span> <span class="nav-text">Type</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Function"><span class="nav-number">1.2.</span> <span class="nav-text">Function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Basic-Block"><span class="nav-number">1.3.</span> <span class="nav-text">Basic Block</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.4.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Terminator-Instruction"><span class="nav-number">1.5.</span> <span class="nav-text">Terminator Instruction</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-basic-Structure-of-the-LLVM-IR"><span class="nav-number">2.</span> <span class="nav-text">The basic Structure of the LLVM IR</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Refrence"><span class="nav-number">3.</span> <span class="nav-text">Refrence</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Simple-Grammar-of-the-LLVM-IR"><span class="nav-number">1.</span> <span class="nav-text">Simple Grammar of the LLVM IR</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Type"><span class="nav-number">1.1.</span> <span class="nav-text">Type</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Function"><span class="nav-number">1.2.</span> <span class="nav-text">Function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Basic-Block"><span class="nav-number">1.3.</span> <span class="nav-text">Basic Block</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.4.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Terminator-Instruction"><span class="nav-number">1.5.</span> <span class="nav-text">Terminator Instruction</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-basic-Structure-of-the-LLVM-IR"><span class="nav-number">2.</span> <span class="nav-text">The basic Structure of the LLVM IR</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#References"><span class="nav-number">3.</span> <span class="nav-text">References</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -221,7 +221,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-07-07 02:11:42" itemprop="dateModified" datetime="2022-07-07T02:11:42+08:00">2022-07-07</time>
+      <time title="Modified: 2022-07-07 02:13:28" itemprop="dateModified" datetime="2022-07-07T02:13:28+08:00">2022-07-07</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -254,7 +254,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>927</span>
+      <span>929</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
@@ -304,7 +304,7 @@
 <p><code>Constant</code> and  <code>Instruction</code> are inherited from  <code>User</code>.</p>
 <p><code>Function</code> inherited from <code>Constant</code> by multiple inheritances, so <code>Function</code> is also  <code>Value</code> and <code>User</code>.</p>
 <p><img src="/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/Value.png" alt="The Structure"></p>
-<h1 id="Refrence"><a href="#Refrence" class="headerlink" title="Refrence"></a>Refrence</h1><p><a target="_blank" rel="noopener" href="https://buaa-se-compiling.github.io/miniSysY-tutorial/">Boaa Manual</a><br><a target="_blank" rel="noopener" href="https://llvm.org/docs/ProgrammersManual.html#llvm-programmer-s-manual">LLVM Programmer’s Manual</a></p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><p><a target="_blank" rel="noopener" href="https://buaa-se-compiling.github.io/miniSysY-tutorial/">Boaa Manual</a><br><a target="_blank" rel="noopener" href="https://llvm.org/docs/ProgrammersManual.html#llvm-programmer-s-manual">LLVM Programmer’s Manual</a></p>
 
     </div>
 

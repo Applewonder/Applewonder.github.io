@@ -20,29 +20,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"applewonder.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Fun Robot">
+    <meta name="description" content="Some obstacles worth memory.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SAGCI-System paper review">
-<meta property="og:url" content="http://applewonder.github.io/2022/06/24/SAGCI-System-paper-review/index.html">
+<meta property="og:title" content="Nimblephysics Compiled from The Source Code">
+<meta property="og:url" content="http://applewonder.github.io/2022/07/10/Nimblephysics-Compiled-from-The-Source-Code/index.html">
 <meta property="og:site_name" content="Always Apple">
-<meta property="og:description" content="Fun Robot">
+<meta property="og:description" content="Some obstacles worth memory.">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-06-24T08:15:52.000Z">
-<meta property="article:modified_time" content="2022-07-06T17:49:29.639Z">
+<meta property="article:published_time" content="2022-07-10T15:59:04.000Z">
+<meta property="article:modified_time" content="2022-07-10T16:32:04.729Z">
 <meta property="article:author" content="Applemandiath">
-<meta property="article:tag" content="Robot">
-<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="Nimblephysics">
+<meta property="article:tag" content="Problems">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://applewonder.github.io/2022/06/24/SAGCI-System-paper-review/">
+<link rel="canonical" href="http://applewonder.github.io/2022/07/10/Nimblephysics-Compiled-from-The-Source-Code/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://applewonder.github.io/2022/06/24/SAGCI-System-paper-review/","path":"2022/06/24/SAGCI-System-paper-review/","title":"SAGCI-System paper review"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://applewonder.github.io/2022/07/10/Nimblephysics-Compiled-from-The-Source-Code/","path":"2022/07/10/Nimblephysics-Compiled-from-The-Source-Code/","title":"Nimblephysics Compiled from The Source Code"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>SAGCI-System paper review | Always Apple</title>
+<title>Nimblephysics Compiled from The Source Code | Always Apple</title>
   
 
 
@@ -117,7 +117,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Problem"><span class="nav-number">1.</span> <span class="nav-text">Problem</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Target"><span class="nav-number">2.</span> <span class="nav-text">Target</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#File"><span class="nav-number">3.</span> <span class="nav-text">File</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Related-works"><span class="nav-number">4.</span> <span class="nav-text">Related works</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Model-Established"><span class="nav-number">5.</span> <span class="nav-text">Model Established</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Build-Environment-Initial-Model"><span class="nav-number">5.1.</span> <span class="nav-text">Build Environment Initial Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">5.2.</span> <span class="nav-text">Interactive Perception</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Experiment"><span class="nav-number">6.</span> <span class="nav-text">Experiment</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#The-GUI"><span class="nav-number">1.</span> <span class="nav-text">The GUI</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-dependency-installation-bash-script"><span class="nav-number">2.</span> <span class="nav-text">The  dependency installation bash script</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#gRPC"><span class="nav-number">2.1.</span> <span class="nav-text">gRPC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tinyxm12"><span class="nav-number">2.2.</span> <span class="nav-text">Tinyxm12</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ezc3D"><span class="nav-number">2.3.</span> <span class="nav-text">ezc3D</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Conclusion"><span class="nav-number">3.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -182,7 +182,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://applewonder.github.io/2022/06/24/SAGCI-System-paper-review/">
+    <link itemprop="mainEntityOfPage" href="http://applewonder.github.io/2022/07/10/Nimblephysics-Compiled-from-The-Source-Code/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/96537531_p0_master1200.jpg">
@@ -195,12 +195,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="SAGCI-System paper review | Always Apple">
-      <meta itemprop="description" content="Fun Robot">
+      <meta itemprop="name" content="Nimblephysics Compiled from The Source Code | Always Apple">
+      <meta itemprop="description" content="Some obstacles worth memory.">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          SAGCI-System paper review
+          Nimblephysics Compiled from The Source Code
         </h1>
 
         <div class="post-meta-container">
@@ -211,14 +211,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2022-06-24 16:15:52" itemprop="dateCreated datePublished" datetime="2022-06-24T16:15:52+08:00">2022-06-24</time>
+      <time title="Created: 2022-07-10 23:59:04" itemprop="dateCreated datePublished" datetime="2022-07-10T23:59:04+08:00">2022-07-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-07-07 01:49:29" itemprop="dateModified" datetime="2022-07-07T01:49:29+08:00">2022-07-07</time>
+      <time title="Modified: 2022-07-11 00:32:04" itemprop="dateModified" datetime="2022-07-11T00:32:04+08:00">2022-07-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -226,7 +226,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Robot-Paper-Review/" itemprop="url" rel="index"><span itemprop="name">Robot Paper Review</span></a>
+          <a href="/categories/Experience/" itemprop="url" rel="index"><span itemprop="name">Experience</span></a>
         </span>
     </span>
 
@@ -239,8 +239,8 @@
     </span>
     <span class="post-meta-item-text">Waline: </span>
   
-    <a title="waline" href="/2022/06/24/SAGCI-System-paper-review/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/2022/06/24/SAGCI-System-paper-review/" itemprop="commentCount"></span>
+    <a title="waline" href="/2022/07/10/Nimblephysics-Compiled-from-The-Source-Code/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2022/07/10/Nimblephysics-Compiled-from-The-Source-Code/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -251,18 +251,18 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>2.7k</span>
+      <span>1k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>2 mins.</span>
+      <span>1 mins.</span>
     </span>
 </div>
 
-            <div class="post-description">Fun Robot</div>
+            <div class="post-description">Some obstacles worth memory.</div>
         </div>
       </header>
 
@@ -270,63 +270,24 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><p>Tasks in the real life: unstructured environments.</p>
-<p>Need to learn things quickly. </p>
-<h1 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h1><p>Sample-Efficient, Generalizable, Compositional, and Incremental</p>
-<h1 id="File"><a href="#File" class="headerlink" title="File"></a>File</h1><p>Unified Robot Description Format(URFD)</p>
-<h1 id="Related-works"><a href="#Related-works" class="headerlink" title="Related works"></a>Related works</h1><p>Interactive Perception</p>
-<p>Differential Simulation</p>
-<p>Model-Based Reinforcement Learning</p>
-<h1 id="Model-Established"><a href="#Model-Established" class="headerlink" title="Model Established"></a>Model Established</h1><h2 id="Build-Environment-Initial-Model"><a href="#Build-Environment-Initial-Model" class="headerlink" title="Build Environment Initial Model"></a>Build Environment Initial Model</h2>
-The $t$ th step point clouds: $\{P_t^i\}_{i = 1}^N \in \mathscr{R}^{N \times 3}$
-
-Taking advantage of a segmentation model to generate $\{M_t^i\}_{i = 1}^N$, $M_i^t \in \{1, 2, \cdots, K\}$, which help to segment the raw points to $K$ links in the URDF. $\{\mathscr{G}_t^j\}_{j = 1}^ K$ denotes these links. Based on that, using MainfoldPlus to help build meshes.
-
-The joints have 4 types, so we need $\{\mathscr{J}\} \in \mathscr{R}^{K \times K \times 4}$ to represent them. The corresponding joint spatial is $\mathscr{C} \in \mathscr{R}^{K \times K \times 9}$, about axis, origin, and orientation. Form a $ST$ to compose a URDF.   
-
-<h2>Interactive Perception</h2>  
-
-The parameters: $\mathscr{Z} = \{\mathscr{J, C, M, \alpha^{sim} }\}$. The $\alpha^{sim}$ is the physical attributes of the object. $a_t^{IP}$ denotes the move of the $t$th step.
-
-First, in the simulation, we have:
-$$
-\bar{\mathscr{P} }_{t + 1}^i = \mathscr{F}^{sim}(\mathscr{P_t}, \mathscr{Z}, \mathscr{\varepsilon}, a_t^{IP})
-$$
-
-Second, in real world, we have:
-$$
-\widetilde{\mathscr{P} }_{t+1}^i = \mathscr{F}^{real}(\mathscr{P}_t^i, \mathscr{U}_t^i, \{\mathscr{P}_{t+1}^i\}_{i = 1}^N)
-$$
-The $\{\mathscr{U}_t^i\}_{i = 1}^N$ denotes the scene flow, which is generated from the $\{\{\mathscr{P}_t^i\}_{i = 1}^N, \{\mathscr{P}_{t+1}^i\}_{i = 1}^N\}$
-
-The  $\widetilde{\mathscr{P} }_{t+1}^i$ is the nearest point in the $\{\mathscr{P}_{t+1}^i\}$ of $\{\{\mathscr{U}_t^i\} + \{\mathscr{P}_t^i\}\}$ .
+        <blockquote>
+<p>The current latest version of Nimblephysics is v0.8.6 when this article is posted.</p>
+</blockquote>
+<p>The OS is wsl2 and the python is 3.7.12.</p>
+<h1 id="The-GUI"><a href="#The-GUI" class="headerlink" title="The GUI"></a>The GUI</h1><p>The 0.8.6 version of Nimblephysics has trouble showing the anime scenes in the Localhost. It is a bug. Maybe it could be fixed in near future.  </p>
+<p>Anyway, v0.7.7 is a more stable version and the GUI function is available.</p>
+<h1 id="The-dependency-installation-bash-script"><a href="#The-dependency-installation-bash-script" class="headerlink" title="The  dependency installation bash script"></a>The  dependency installation bash script</h1><p>This <a target="_blank" rel="noopener" href="https://github.com/nimblephysics/nimblephysics/blob/master/ci/manylinux/ubuntu.sh">script</a> lists several dependencies to be installed. However, some of them need to be treated carefully.</p>
+<h2 id="gRPC"><a href="#gRPC" class="headerlink" title="gRPC"></a>gRPC</h2><p>The real version should be 1.35.0, not 1.33.2. When manually <code>git clone</code> its third-party packages, remember to switch to the named version.   </p>
+<p>Meanwhile, the <code>make install</code> should be executed carefully.</p>
+<h2 id="Tinyxm12"><a href="#Tinyxm12" class="headerlink" title="Tinyxm12"></a>Tinyxm12</h2><p>Add a line</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set(CMAKE_POSITION_INDEPENDENT_CODE ON)</span><br></pre></td></tr></table></figure>
 
 
 
-Now consider the optimization of the $\mathscr{Z}$.
-
-The distance between the simulation and the real world is:
-$$
-\mathscr{L}_{t +1} = \frac{1}{N} \sum_{i = 1}^N\|\bar{\mathscr{P} }_{t + 1}^i - \widetilde{\mathscr{P} }_{t+1}^i\|^2
-$$
-The $\mathscr{F}^{sim}$ is differentiable, so we  could:
-$$
-\mathscr{Z}' = \mathscr{Z} - \lambda\frac{\partial \mathscr{L}_{t +1} }{\partial \mathscr{Z} }
-$$
-Remember $\mathscr{Z} = \{\mathscr{J, C, M, \alpha^{sim} }\}$, so it is actually optimizing these 4 matrixes. Reminding that the $\alpha^{sim}$ should be combined with $a_t^{IP}$ to calculate the joint state change $\delta q$.
-
-The improvement is:
-$$
-r_t = \mathscr{L}_{t+ 1}(\mathscr{Z}) - \mathscr{L}_{t+ 1}(\mathscr{Z'})
-$$
-During the simulation, the model adopted is Nimble, which is differentiable. 
-
-The point is, instead of just adopting the Nimble's prediction $s_{t+1}^{Nim}$, the model calculates the transition $\delta_{s_{t + 1} }$ from $s_t^{sim}, a_t, s_{t + 1}^{Nim}$. Then the result $s_{t +1}^{Nim} + \delta_{s_{t+1} }$ is the real $s_{t + 1}^{sim}$
-
-The backward propagation is just normal chain rules.
-
-<h1 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h1><p>The judgment standard is mIoU, segmentation Acc., Rot, and Tran error.</p>
-<p>sf + noise and sf are better than the Initial model, sf + ground truth is the best.</p>
+<p>to its <code>CMakeList.txt</code>. Otherwise, you will fail in the last step.</p>
+<h2 id="ezc3D"><a href="#ezc3D" class="headerlink" title="ezc3D"></a>ezc3D</h2><p>Not mentioned in the <a target="_blank" rel="noopener" href="https://github.com/nimblephysics/nimblephysics/blob/master/ci/manylinux/ubuntu.sh">script</a>. But we need it to build the file.  </p>
+<p>The rest to be installed or modified is based on the CMake error messages.</p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>It takes me about 3 days to finish its building. On day 1, I messed up the system and had to reboot the whole virtual machine. On day 2,  I finished most of the packages. On day 3, I fixed all the errors alarmed by the CMake under the guidance of my mentor.</p>
 
     </div>
 
@@ -336,19 +297,19 @@ The backward propagation is just normal chain rules.
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Robot/" rel="tag"># Robot</a>
-              <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
+              <a href="/tags/Nimblephysics/" rel="tag"># Nimblephysics</a>
+              <a href="/tags/Problems/" rel="tag"># Problems</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/" rel="prev" title="Build a Compiler from Scratch（IR Basic）">
+                  <i class="fa fa-chevron-left"></i> Build a Compiler from Scratch（IR Basic）
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/" rel="next" title="Build a Compiler from Scratch（IR Basic）">
-                  Build a Compiler from Scratch（IR Basic） <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -417,7 +378,7 @@ The backward propagation is just normal chain rules.
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"blog-waline-server.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"placeholder":"Hello","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/2022/06/24/SAGCI-System-paper-review/"}</script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"blog-waline-server.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"placeholder":"Hello","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/2022/07/10/Nimblephysics-Compiled-from-The-Source-Code/"}</script>
 <link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
 <script>
 document.addEventListener('page:loaded', () => {

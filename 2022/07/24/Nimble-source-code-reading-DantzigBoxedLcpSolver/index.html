@@ -20,25 +20,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"applewonder.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Applemandiath&#39;s blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Always Apple">
-<meta property="og:url" content="http://applewonder.github.io/index.html">
+    <meta name="description" content="The version of the Nimblephysics is still 0.7.7  This part is about using Dantzig method to solve the LCP problem stated as follow: find $f,v_{t+1}$ such that $f \geq 0, v_{v+1} \geq 0, f^Tv_{t+1} &amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nimble source code reading: DantzigBoxedLcpSolver">
+<meta property="og:url" content="http://applewonder.github.io/2022/07/24/Nimble-source-code-reading-DantzigBoxedLcpSolver/index.html">
 <meta property="og:site_name" content="Always Apple">
-<meta property="og:description" content="Applemandiath&#39;s blog">
+<meta property="og:description" content="The version of the Nimblephysics is still 0.7.7  This part is about using Dantzig method to solve the LCP problem stated as follow: find $f,v_{t+1}$ such that $f \geq 0, v_{v+1} \geq 0, f^Tv_{t+1} &amp;#">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-07-24T05:33:56.000Z">
+<meta property="article:modified_time" content="2022-07-24T22:14:35.997Z">
 <meta property="article:author" content="Applemandiath">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://applewonder.github.io/">
+<link rel="canonical" href="http://applewonder.github.io/2022/07/24/Nimble-source-code-reading-DantzigBoxedLcpSolver/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"en","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://applewonder.github.io/2022/07/24/Nimble-source-code-reading-DantzigBoxedLcpSolver/","path":"2022/07/24/Nimble-source-code-reading-DantzigBoxedLcpSolver/","title":"Nimble source code reading: DantzigBoxedLcpSolver"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Always Apple</title>
+<title>Nimble source code reading: DantzigBoxedLcpSolver | Always Apple</title>
   
 
 
@@ -68,7 +70,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">Always Apple</h1>
+      <p class="site-title">Always Apple</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -100,7 +102,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -113,6 +115,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#The-parameter"><span class="nav-number">1.</span> <span class="nav-text">The parameter</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-body"><span class="nav-number">2.</span> <span class="nav-text">The body</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Unbounded-Variables"><span class="nav-number">2.1.</span> <span class="nav-text">Unbounded Variables</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prepare-containers"><span class="nav-number">2.2.</span> <span class="nav-text">Prepare containers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Start-Solving"><span class="nav-number">2.3.</span> <span class="nav-text">Start Solving</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Eternal-Loop"><span class="nav-number">2.4.</span> <span class="nav-text">Eternal Loop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Finish-Inner-Loop"><span class="nav-number">2.5.</span> <span class="nav-text">Finish Inner Loop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TaDa-Finish-it"><span class="nav-number">2.6.</span> <span class="nav-text">TaDa! Finish it!</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Conclusion"><span class="nav-number">3.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -166,16 +169,17 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="http://applewonder.github.io/2022/07/24/Nimble-source-code-reading-DantzigBoxedLcpSolver/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -189,13 +193,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Always Apple">
+      <meta itemprop="name" content="Nimble source code reading: DantzigBoxedLcpSolver | Always Apple">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/24/Nimble-source-code-reading-DantzigBoxedLcpSolver/" class="post-title-link" itemprop="url">Nimble source code reading: DantzigBoxedLcpSolver</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          Nimble source code reading: DantzigBoxedLcpSolver
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -254,7 +258,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <blockquote>
+        <blockquote>
 <p>The version of the Nimblephysics is still 0.7.7</p>
 </blockquote>
 <p>This part is about using Dantzig method to solve the LCP problem stated as follow:</p>
@@ -429,7 +433,6 @@
 
 <h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>It takes me two weeks to realize what is going on in this function. Really nice experience about reading a giant program. It is my first time reading these things ^_^. </p>
 
-      
     </div>
 
     
@@ -437,475 +440,18 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://applewonder.github.io/2022/07/11/Build-a-Compiler-from-Scratch-IR-Generate/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/96537531_p0_master1200.jpg">
-      <meta itemprop="name" content="Applemandiath">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Always Apple">
-      <meta itemprop="description" content="Applemandiath's blog">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Always Apple">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/11/Build-a-Compiler-from-Scratch-IR-Generate/" class="post-title-link" itemprop="url">Build-a-Compiler-from-Scratch(IR Generate)</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-07-11 16:50:29" itemprop="dateCreated datePublished" datetime="2022-07-11T16:50:29+08:00">2022-07-11</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-07-24 13:31:42" itemprop="dateModified" datetime="2022-07-24T13:31:42+08:00">2022-07-24</time>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline: </span>
-  
-    <a title="waline" href="/2022/07/11/Build-a-Compiler-from-Scratch-IR-Generate/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/2022/07/11/Build-a-Compiler-from-Scratch-IR-Generate/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="Symbols count in article">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>0</span>
-    </span>
-    <span class="post-meta-item" title="Reading time">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>1 mins.</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://applewonder.github.io/2022/07/10/Nimblephysics-Compiled-from-The-Source-Code/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/96537531_p0_master1200.jpg">
-      <meta itemprop="name" content="Applemandiath">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Always Apple">
-      <meta itemprop="description" content="Applemandiath's blog">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Always Apple">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/10/Nimblephysics-Compiled-from-The-Source-Code/" class="post-title-link" itemprop="url">Nimblephysics Compiled from The Source Code</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-07-10 23:59:04" itemprop="dateCreated datePublished" datetime="2022-07-10T23:59:04+08:00">2022-07-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-07-11 00:33:44" itemprop="dateModified" datetime="2022-07-11T00:33:44+08:00">2022-07-11</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Experience/" itemprop="url" rel="index"><span itemprop="name">Experience</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline: </span>
-  
-    <a title="waline" href="/2022/07/10/Nimblephysics-Compiled-from-The-Source-Code/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/2022/07/10/Nimblephysics-Compiled-from-The-Source-Code/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="Symbols count in article">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>1k</span>
-    </span>
-    <span class="post-meta-item" title="Reading time">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>1 mins.</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Some obstacles worth memory</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/07/10/Nimblephysics-Compiled-from-The-Source-Code/">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://applewonder.github.io/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/96537531_p0_master1200.jpg">
-      <meta itemprop="name" content="Applemandiath">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Always Apple">
-      <meta itemprop="description" content="Applemandiath's blog">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Always Apple">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/" class="post-title-link" itemprop="url">Build a Compiler from Scratch（IR Basic）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-07-05 16:10:24" itemprop="dateCreated datePublished" datetime="2022-07-05T16:10:24+08:00">2022-07-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-07-07 02:14:11" itemprop="dateModified" datetime="2022-07-07T02:14:11+08:00">2022-07-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Compiler-Theory/" itemprop="url" rel="index"><span itemprop="name">Compiler Theory</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline: </span>
-  
-    <a title="waline" href="/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="Symbols count in article">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>929</span>
-    </span>
-    <span class="post-meta-item" title="Reading time">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>1 mins.</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Study LLVM to build our kemomimi compiler</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/">
-                Read more &raquo;
-              </a>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/11/Build-a-Compiler-from-Scratch-IR-Generate/" rel="prev" title="Build-a-Compiler-from-Scratch(IR Generate)">
+                  <i class="fa fa-chevron-left"></i> Build-a-Compiler-from-Scratch(IR Generate)
+                </a>
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://applewonder.github.io/2022/06/24/SAGCI-System-paper-review/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/96537531_p0_master1200.jpg">
-      <meta itemprop="name" content="Applemandiath">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Always Apple">
-      <meta itemprop="description" content="Applemandiath's blog">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Always Apple">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/06/24/SAGCI-System-paper-review/" class="post-title-link" itemprop="url">SAGCI-System paper review</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-06-24 16:15:52" itemprop="dateCreated datePublished" datetime="2022-06-24T16:15:52+08:00">2022-06-24</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-07-07 01:49:29" itemprop="dateModified" datetime="2022-07-07T01:49:29+08:00">2022-07-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Robot-Paper-Review/" itemprop="url" rel="index"><span itemprop="name">Robot Paper Review</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline: </span>
-  
-    <a title="waline" href="/2022/06/24/SAGCI-System-paper-review/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/2022/06/24/SAGCI-System-paper-review/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="Symbols count in article">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>2.7k</span>
-    </span>
-    <span class="post-meta-item" title="Reading time">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>2 mins.</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Fun Robot</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/06/24/SAGCI-System-paper-review/">
-                Read more &raquo;
-              </a>
+            <div class="post-nav-item">
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          </div>
     </footer>
   </article>
 </div>
@@ -914,6 +460,8 @@
 
 
 
+
+    <div class="comments" id="waline"></div>
 </div>
   </main>
 
@@ -970,7 +518,7 @@
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"blog-waline-server.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"placeholder":"Hello","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/"}</script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"blog-waline-server.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"placeholder":"Hello","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/2022/07/24/Nimble-source-code-reading-DantzigBoxedLcpSolver/"}</script>
 <link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
 <script>
 document.addEventListener('page:loaded', () => {

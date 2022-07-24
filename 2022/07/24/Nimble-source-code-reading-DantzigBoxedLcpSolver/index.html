@@ -28,7 +28,7 @@
 <meta property="og:description" content="My first time reading such a large program! Pretty precious memory">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-07-24T05:33:56.000Z">
-<meta property="article:modified_time" content="2022-07-24T22:27:16.377Z">
+<meta property="article:modified_time" content="2022-07-24T23:10:16.502Z">
 <meta property="article:author" content="Applemandiath">
 <meta property="article:tag" content="Nimblephysics">
 <meta property="article:tag" content="Machine Learning">
@@ -117,7 +117,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#The-parameter"><span class="nav-number">1.</span> <span class="nav-text">The parameter</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-body"><span class="nav-number">2.</span> <span class="nav-text">The body</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Unbounded-Variables"><span class="nav-number">2.1.</span> <span class="nav-text">Unbounded Variables</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prepare-containers"><span class="nav-number">2.2.</span> <span class="nav-text">Prepare containers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Start-Solving"><span class="nav-number">2.3.</span> <span class="nav-text">Start Solving</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Eternal-Loop"><span class="nav-number">2.4.</span> <span class="nav-text">Eternal Loop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Finish-Inner-Loop"><span class="nav-number">2.5.</span> <span class="nav-text">Finish Inner Loop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TaDa-Finish-it"><span class="nav-number">2.6.</span> <span class="nav-text">TaDa! Finish it!</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Conclusion"><span class="nav-number">3.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#The-parameter"><span class="nav-number">1.</span> <span class="nav-text">The parameter</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-body"><span class="nav-number">2.</span> <span class="nav-text">The body</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Unbounded-Variables"><span class="nav-number">2.1.</span> <span class="nav-text">Unbounded Variables</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lo-Hi-LCP"><span class="nav-number">2.2.</span> <span class="nav-text">Lo-Hi LCP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PrePare-Containers"><span class="nav-number">2.2.1.</span> <span class="nav-text">PrePare Containers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Start-Solving"><span class="nav-number">2.2.2.</span> <span class="nav-text">Start Solving</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Eternal-Loop"><span class="nav-number">2.2.3.</span> <span class="nav-text">Eternal Loop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Finish-Inner-Loop"><span class="nav-number">2.2.4.</span> <span class="nav-text">Finish Inner Loop</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TaDa-Finish-it"><span class="nav-number">2.3.</span> <span class="nav-text">TaDa! Finish it!</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Conclusion"><span class="nav-number">3.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -218,7 +218,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-07-25 06:27:16" itemprop="dateModified" datetime="2022-07-25T06:27:16+08:00">2022-07-25</time>
+      <time title="Modified: 2022-07-25 07:10:16" itemprop="dateModified" datetime="2022-07-25T07:10:16+08:00">2022-07-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -296,9 +296,17 @@
 </blockquote>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (nub &gt;= n) &#123;</span><br><span class="line">    dReal *d = <span class="keyword">new</span> dReal[n];</span><br><span class="line">    <span class="built_in">dSetZero</span> (d, n);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> nskip = <span class="built_in">dPAD</span>(n);</span><br><span class="line">    <span class="built_in">dFactorLDLT</span> (A, d, n, nskip);</span><br><span class="line">    <span class="built_in">dSolveLDLT</span> (A, d, b, n, nskip);</span><br><span class="line">    <span class="built_in">memcpy</span> (x, b, n*<span class="built_in">sizeof</span>(dReal));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span>[] d;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
-<p>The process is mainly about:<br>$$<br>A &#x3D; LDL^T\<br>x &#x3D; A^{-1}b &#x3D; L^{-T}D^{-1}L^{-1}b<br>$$<br>The $b$ in the above parameter might be $-b$.</p>
-<p>##Lo-Hi LCP</p>
-<h2 id="Prepare-containers"><a href="#Prepare-containers" class="headerlink" title="Prepare containers"></a>Prepare containers</h2><p>Unfortunately, usually the $nub$ is $0$. So we have to </p>
+<p>The process is mainly about:</p>
+
+$$
+A = LDL^T\\\
+x = A^{-1}b = L^{-T}D^{-1}L^{-1}b 
+$$
+
+
+<p>The $b$ in the above parameter might be $-b$.</p>
+<h2 id="Lo-Hi-LCP"><a href="#Lo-Hi-LCP" class="headerlink" title="Lo-Hi LCP"></a>Lo-Hi LCP</h2><p>Start the main part.</p>
+<h3 id="PrePare-Containers"><a href="#PrePare-Containers" class="headerlink" title="PrePare Containers"></a>PrePare Containers</h3><p>Unfortunately, usually the $nub$ is $0$. So we have to </p>
 <p>Things we need:</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">dLCP <span class="title">lcp</span><span class="params">(n,nskip,nub,A,x,b,w,lo,hi,L,d,Dell,ell,delta_w,state,findex,p,C,Arows)</span></span>;</span><br></pre></td></tr></table></figure>
 
@@ -316,11 +324,16 @@
 <p>From the above code, <code>m_code</code> is <code>nub</code>, which is the number of unbounded variables. Actually, if <code>nub</code> greater than $0$, depending on the constructor:</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> nub = m_nub;</span><br><span class="line">&#123;</span><br><span class="line">    dReal *Lrow = m_L;</span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> nskip = m_nskip;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j=<span class="number">0</span>; j&lt;nub; Lrow+=nskip, ++j) <span class="built_in">memcpy</span>(Lrow,<span class="built_in">AROW</span>(j),(j+<span class="number">1</span>)*<span class="built_in">sizeof</span>(dReal));</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">dFactorLDLT</span> (m_L,m_d,nub,m_nskip);</span><br><span class="line"><span class="built_in">memcpy</span> (m_x,m_b,nub*<span class="built_in">sizeof</span>(dReal));</span><br><span class="line"><span class="built_in">dSolveLDLT</span> (m_L,m_d,m_x,nub,m_nskip);</span><br><span class="line"><span class="built_in">dSetZero</span> (m_w,nub);</span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> *C = m_C;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> k=<span class="number">0</span>; k&lt;nub; ++k) C[k] = k;</span><br><span class="line">&#125;</span><br><span class="line">m_nC = nub;</span><br></pre></td></tr></table></figure>
 
-<p>It is quite familiar to us. These codes solve a $nub \times nub$ matrix embedded in $A$ and save the results in the $m_x$. Of course, only the first $nub$ variables in the $m_x$.</p>
+
+
+It is quite familiar to us. These codes solve a $nub \times nub$ matrix embedded in $A$ and save the results in the $m\_x$. Of course, only the first $nub$ variables in the $m\_x$.
+
+
+
 <blockquote>
 <p>Keep in mind that the current $x$ is all normal forces!!!</p>
 </blockquote>
-<h2 id="Start-Solving"><a href="#Start-Solving" class="headerlink" title="Start Solving"></a>Start Solving</h2><p>Now here is where the dream started:</p>
+<h3 id="Start-Solving"><a href="#Start-Solving" class="headerlink" title="Start Solving"></a>Start Solving</h3><p>Now here is where the dream started:</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i=adj_nub; i&lt;n; ++i)</span><br></pre></td></tr></table></figure>
 
 <p>This loop will finish the computation of these bounded questions. </p>
@@ -329,7 +342,7 @@
 <p>Loop over all indexes adj_nub..n-1. For index $i$, if $x(i),w(i)$ satisfy the LCP conditions then $i$ is added to the appropriate index set. Otherwise, $x(i),w(i)$ is driven either $+ve$ or $-ve$ to force it to the valid region. As we drive $x(i), x(C)$ is also adjusted to keep $w(C)$ at zero. While driving $x(i)$ we maintain the LCP conditions on the other variables $0..i-1$. We do this by watching out for other $x(i),w(i)$ values going outside the valid region, and then switching them between index sets when that happens.</p>
 </blockquote>
 <blockquote>
-<p>The index i is the driving index and indexes i+1..n-1 are “don’t care”, i.e. When we make changes to the system those x’s will be zero and we don’t care what happens to those w’s. In other words, we only consider an $(i+1)<em>(i+1)$ sub-problem of $A</em>x&#x3D;b+w$.</p>
+<p>The index i is the driving index and indexes i+1..n-1 are “don’t care”, i.e. When we make changes to the system those x’s will be zero and we don’t care what happens to those w’s. In other words, we only need to consider an $(i+1)<em>(i+1)$ sub-problem of $A</em>x&#x3D;b+w$.</p>
 </blockquote>
 <p>Remember, the algorithm goes from $A[0][0],  A[i][i]$, to $A[n][n]$.</p>
 <p>Why  $A*x&#x3D;b+w$???</p>
@@ -353,7 +366,25 @@
 <p>The author’s words:</p>
 <p>Thus far we have not even been computing the $w$ values for indexes greater than $i$, so compute $w[i]$ now.</p>
 </blockquote>
-<p>This line of code is:<br>$$<br>\begin{align}<br>w_i &amp;&#x3D; A_{i(0C)}*x_{0C} + A_{i(C\ C+N)}*x_{C\ (C+N)} - b[i] \<br>&amp;&#x3D; A_{i(0(C+N))}*x_{0(C+N)} - b[i]<br>\end{align}	<br>$$<br>So :<br>$$<br>w &#x3D; A_{n\ C+N}*x - b<br>$$</p>
+<p>This line of code is:</p>
+
+$$
+\begin{align}
+w_i &= A_{i(0C)}*x_{0C} + A_{i(C\ C+N)}*x_{C\ (C+N)} - b[i] \\
+&= A_{i(0(C+N))}*x_{0(C+N)} - b[i]
+\end{align}	
+$$
+
+
+<p>So :</p>
+
+$$
+w = A_{n\ C+N}*x - b
+$$
+
+
+
+
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// for i in N, state[i] is 0 if x(i)==lo(i) or 1 if x(i)==hi(i)</span></span><br><span class="line"><span class="type">bool</span> *state = <span class="keyword">new</span> <span class="type">bool</span>[n];</span><br></pre></td></tr></table></figure>
 
 <p>Definition of the $state$</p>
@@ -367,10 +398,19 @@
 </blockquote>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (w[i]==<span class="number">0</span>) &#123;</span><br><span class="line">    lcp.<span class="built_in">solve1</span> (delta_x,i,<span class="number">0</span>,<span class="number">1</span>);</span><br><span class="line">    lcp.<span class="built_in">transfer_i_to_C</span> (i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>In this state, $Lo[i] &lt; 0 &#x3D; w[i] &#x3D; 0 &lt; Hi[i]$.</p>
-<p>$w[i] &#x3D; (Af(or\ x)-b)[i] &#x3D; 0$, $i$ in $C$.</p>
-<p>Now we only have two instances:<br>$$<br>w[i] &gt; 0\ and\ Lo[i] &lt; 0   \<br>w[i] &lt; 0\ and\ Hi[i] &gt; 0<br>$$<br>Both situations $w*x \neq 0$, so we need to do our job.</p>
-<h2 id="Eternal-Loop"><a href="#Eternal-Loop" class="headerlink" title="Eternal Loop"></a>Eternal Loop</h2><p>The code used a permanent loop to adjust the answer until the sets $C$ and $N$ are not changing.</p>
+<p>In this state, $Lo[i] &lt; 0 &#x3D; w[i] &#x3D; 0 &lt; Hi[i]$. $w[i] &#x3D; (Af(or\ x)-b)[i] &#x3D; 0$, $i$ in $C$.</p>
+<p>Now we only have two instances:</p>
+
+$$
+\begin{align}
+w[i] > 0\ &and\ Lo[i] < 0   \\
+w[i] < 0\ &and\ Hi[i] > 0
+\end{align}
+$$
+
+
+<p>Both situations $w*x \neq 0$, so we need to do our job.</p>
+<h3 id="Eternal-Loop"><a href="#Eternal-Loop" class="headerlink" title="Eternal Loop"></a>Eternal Loop</h3><p>The code used a permanent loop to adjust the answer until the sets $C$ and $N$ are not changing.</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> dir;</span><br><span class="line">dReal dirf;</span><br><span class="line"><span class="keyword">if</span> (w[i] &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">    dir = <span class="number">1</span>;</span><br><span class="line">    dirf = <span class="built_in">REAL</span>(<span class="number">1.0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    dir = <span class="number">-1</span>;</span><br><span class="line">    dirf = <span class="built_in">REAL</span>(<span class="number">-1.0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
@@ -384,7 +424,15 @@
 <p>The author’s word:</p>
 <p>compute: delta_x(C) &#x3D; -dir*A(C,C)\A(C,i).</p>
 </blockquote>
-<p>I believe it should correspond to the pseudo-code <em>dfirection</em> in the paper <a target="_blank" rel="noopener" href="https://www.cs.cmu.edu/~baraff/papers/sig94.pdf">Fast Contact Force Computation for Nonpenetrating Rigid Bodies</a>, and:<br>$$<br>delta_x &#x3D; -A_{CC}^{-1}A_{Ci}<br>$$</p>
+<p>I believe it should correspond to the pseudo-code <em>dfirection</em> in the paper <a target="_blank" rel="noopener" href="https://www.cs.cmu.edu/~baraff/papers/sig94.pdf">Fast Contact Force Computation for Nonpenetrating Rigid Bodies</a>, and:</p>
+
+$$
+delta\_x = -A_{CC}^{-1}A_{Ci}
+$$
+
+
+
+
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lcp.<span class="built_in">pN_equals_ANC_times_qC</span> (delta_w,delta_x);<span class="comment">//delta_w[N] = A[N]*delta_x</span></span><br><span class="line">lcp.<span class="built_in">pN_plusequals_ANi</span> (delta_w,i,dir);<span class="comment">//delta_w[N] += dir*A[i][N]</span></span><br><span class="line">delta_w[i] = lcp.<span class="built_in">AiC_times_qC</span> (i,delta_x) + lcp.<span class="built_in">Aii</span>(i)*dirf;</span><br><span class="line"><span class="comment">//delta_w[i] = A[i][C]*delta_x[C] + dir*A[i][i]</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
@@ -414,29 +462,73 @@
 <p>Plus these step and direction to $x$ and $w$.</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// apply x = x + s * delta_x</span></span><br><span class="line">lcp.<span class="built_in">pC_plusequals_s_times_qC</span> (x, s, delta_x);</span><br><span class="line">x[i] += s * dirf;</span><br><span class="line"></span><br><span class="line"><span class="comment">// apply w = w + s * delta_w</span></span><br><span class="line">lcp.<span class="built_in">pN_plusequals_s_times_qN</span> (w, s, delta_w);</span><br><span class="line">w[i] += s * delta_w[i];</span><br></pre></td></tr></table></figure>
 
-<p>$$<br>x[C] +&#x3D;\ s<em>delta_x[C]\<br>x[i] +&#x3D;\ s</em>dir\<br>w[N] +&#x3D;\ s<em>delta_w[N]\<br>w[i] +&#x3D;\ s</em>dir\<br>$$</p>
-<p> Since we get the maximum step length $s$, it is time to move these indexes.</p>
+<p>The equations are:</p>
+
+$$
+\begin{align}
+x[C]\ &+=\ s*delta\_x[C] \\
+x[i]\ &+=\ s*dir \\
+w[N]\ &+=\ s*delta\_w[N] \\
+w[i]\ &+=\ s*dir
+\end{align}
+$$
+
+ 
+
+<p>Since we get the maximum step length $s$, it is time to move these indexes.</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="number">1</span>:		<span class="comment">// done</span></span><br><span class="line">    w[i] = <span class="number">0</span>;</span><br><span class="line">    lcp.<span class="built_in">transfer_i_to_C</span> (i);</span><br><span class="line">    <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
 
-<p>cmd is $1$, which means $ s &#x3D; -w[i]&#x2F;delta_w[i]$.  $w[i] &#x3D; 0$, so $i$ should in $C$.</p>
+
+
+cmd is $1$, which means $ s = -w[i]/delta\_w[i]$.  $w[i] = 0$, so $i$ should in $C$.
+
+ 
+
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="number">2</span>:		<span class="comment">// done</span></span><br><span class="line">    x[i] = lo[i];</span><br><span class="line">    state[i] = <span class="literal">false</span>;</span><br><span class="line">    lcp.<span class="built_in">transfer_i_to_N</span> (i);</span><br><span class="line">    <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
 
-<p>cmd is 2, which means $s &#x3D; (lo[i]-x[i])*dirf$. $x[i] &#x3D; 0$,  so $i$ should in $N$.</p>
+
+
+cmd is 2, which means $s = (lo[i]-x[i])*dirf$. $x[i] = 0$,  so $i$ should in $N$.
+
+ 
+
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="number">3</span>:		<span class="comment">// done</span></span><br><span class="line">    x[i] = hi[i];</span><br><span class="line">    state[i] = <span class="literal">true</span>;</span><br><span class="line">    lcp.<span class="built_in">transfer_i_to_N</span> (i);</span><br><span class="line">    <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
 
-<p>cmd is 3, which means $s &#x3D; (hi[i]-x[i])*dirf$. $x[i] &#x3D; 0$,  so $i$ should in $N$.</p>
+
+
+cmd is 3, which means $s = (hi[i]-x[i])*dirf$. $x[i] = 0$,  so $i$ should in $N$.
+
+ 
+
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="number">4</span>:		<span class="comment">// keep going</span></span><br><span class="line">    w[si] = <span class="number">0</span>;</span><br><span class="line">    lcp.<span class="built_in">transfer_i_from_N_to_C</span> (si);</span><br><span class="line">    <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
 
-<p>cmd is 4, which means $s &#x3D; -w[indexN_k] &#x2F; delta_w[indexN_k]$. $w[si] &#x3D; 0$,  so $si$ should transfer from $N$ to $C$.</p>
+
+
+cmd is 4, which means $s = -w[indexN\_k] / delta\_w[indexN\_k]$. $w[si] = 0$,  so $si$ should transfer from $N$ to $C$.
+
+ 
+
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="number">5</span>:		<span class="comment">// keep going</span></span><br><span class="line">    x[si] = lo[si];</span><br><span class="line">    state[si] = <span class="literal">false</span>;</span><br><span class="line">    lcp.<span class="built_in">transfer_i_from_C_to_N</span> (si, <span class="literal">nullptr</span>);</span><br><span class="line">    <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
 
-<p>cmd is 5, which means $s &#x3D; (lo[indexC_k]-x[indexC_k]) &#x2F; delta_x[indexC_k]$. $x[si] &#x3D; 0$,  so $si$ should transfer from $C$ to $N$.</p>
+
+
+cmd is 5, which means $s = (lo[indexC\_k]-x[indexC\_k]) / delta\_x[indexC\_k]$. $x[si] = 0$,  so $si$ should transfer from $C$ to $N$.
+
+ 
+
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="number">6</span>:		<span class="comment">// keep going</span></span><br><span class="line">    x[si] = hi[si];</span><br><span class="line">    state[si] = <span class="literal">true</span>;</span><br><span class="line">    lcp.<span class="built_in">transfer_i_from_C_to_N</span> (si, <span class="literal">nullptr</span>);</span><br><span class="line">    <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
 
-<p>cmd is 6, which means $s &#x3D; (hi[indexC_k]-x[indexC_k]) &#x2F; delta_x[indexC_k]$. $x[si] &#x3D; 0$,  so $si$ should transfer from $C$ to $N$.</p>
+
+
+cmd is 6, which means $s = (hi[indexC\_k]-x[indexC\_k]) / delta\_x[indexC\_k]$. $x[si] = 0$,  so $si$ should transfer from $C$ to $N$.
+
+ 
+
 <p>If the $cmd \leq3$, this means the set $N$ and $C$ are all stable, we could be saved from the while(true) loop.</p>
-<h2 id="Finish-Inner-Loop"><a href="#Finish-Inner-Loop" class="headerlink" title="Finish Inner Loop"></a>Finish Inner Loop</h2><p>Note that if $s_error &#x3D; true$, we need break from the main loop right now:</p>
+<h3 id="Finish-Inner-Loop"><a href="#Finish-Inner-Loop" class="headerlink" title="Finish Inner Loop"></a>Finish Inner Loop</h3><p>Note that if $s_error &#x3D; true$, we need break from the main loop right now:</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (s_error) &#123;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
 
 <h2 id="TaDa-Finish-it"><a href="#TaDa-Finish-it" class="headerlink" title="TaDa! Finish it!"></a>TaDa! Finish it!</h2><p>When everything is done, we need to upermute the $x$ and $w$:</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lcp.<span class="built_in">unpermute</span>();</span><br></pre></td></tr></table></figure>

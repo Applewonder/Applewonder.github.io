@@ -20,29 +20,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"applewonder.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Fun Robot">
+    <meta name="description" content="A conclusion about a LCP solver">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SAGCI-System paper review">
-<meta property="og:url" content="http://applewonder.github.io/2022/06/24/SAGCI-System-paper-review/index.html">
+<meta property="og:title" content="PGS LCP solver Conclusion">
+<meta property="og:url" content="http://applewonder.github.io/2022/08/02/PGS-LCP-solver-conclusion/index.html">
 <meta property="og:site_name" content="Always Apple">
-<meta property="og:description" content="Fun Robot">
+<meta property="og:description" content="A conclusion about a LCP solver">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-06-24T08:15:52.000Z">
-<meta property="article:modified_time" content="2022-07-06T17:49:29.639Z">
+<meta property="article:published_time" content="2022-08-02T06:06:09.000Z">
+<meta property="article:modified_time" content="2022-08-02T10:53:35.399Z">
 <meta property="article:author" content="Applemandiath">
-<meta property="article:tag" content="Machine Learning">
-<meta property="article:tag" content="Robot">
+<meta property="article:tag" content="LCP Solver">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://applewonder.github.io/2022/06/24/SAGCI-System-paper-review/">
+<link rel="canonical" href="http://applewonder.github.io/2022/08/02/PGS-LCP-solver-conclusion/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://applewonder.github.io/2022/06/24/SAGCI-System-paper-review/","path":"2022/06/24/SAGCI-System-paper-review/","title":"SAGCI-System paper review"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://applewonder.github.io/2022/08/02/PGS-LCP-solver-conclusion/","path":"2022/08/02/PGS-LCP-solver-conclusion/","title":"PGS LCP solver Conclusion"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>SAGCI-System paper review | Always Apple</title>
+<title>PGS LCP solver Conclusion | Always Apple</title>
   
 
 
@@ -117,7 +116,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Problem"><span class="nav-number">1.</span> <span class="nav-text">Problem</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Target"><span class="nav-number">2.</span> <span class="nav-text">Target</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#File"><span class="nav-number">3.</span> <span class="nav-text">File</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Related-works"><span class="nav-number">4.</span> <span class="nav-text">Related works</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Model-Established"><span class="nav-number">5.</span> <span class="nav-text">Model Established</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Build-Environment-Initial-Model"><span class="nav-number">5.1.</span> <span class="nav-text">Build Environment Initial Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">5.2.</span> <span class="nav-text">Interactive Perception</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Experiment"><span class="nav-number">6.</span> <span class="nav-text">Experiment</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Guass-Seidel-Iteration-Solver"><span class="nav-number">2.</span> <span class="nav-text">Guass-Seidel Iteration Solver</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Projected-Gauss-Seidel-Solver"><span class="nav-number">3.</span> <span class="nav-text">Projected Gauss-Seidel Solver</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Using-the-PGS-method-to-solve-the-MLCP-problem"><span class="nav-number">4.</span> <span class="nav-text">Using the PGS method to solve the MLCP problem</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -182,7 +181,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://applewonder.github.io/2022/06/24/SAGCI-System-paper-review/">
+    <link itemprop="mainEntityOfPage" href="http://applewonder.github.io/2022/08/02/PGS-LCP-solver-conclusion/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/96537531_p0_master1200.jpg">
@@ -195,12 +194,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="SAGCI-System paper review | Always Apple">
-      <meta itemprop="description" content="Fun Robot">
+      <meta itemprop="name" content="PGS LCP solver Conclusion | Always Apple">
+      <meta itemprop="description" content="A conclusion about a LCP solver">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          SAGCI-System paper review
+          PGS LCP solver Conclusion
         </h1>
 
         <div class="post-meta-container">
@@ -210,15 +209,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2022-06-24 16:15:52" itemprop="dateCreated datePublished" datetime="2022-06-24T16:15:52+08:00">2022-06-24</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-07-07 01:49:29" itemprop="dateModified" datetime="2022-07-07T01:49:29+08:00">2022-07-07</time>
+      <time title="Created: 2022-08-02 14:06:09 / Modified: 18:53:35" itemprop="dateCreated datePublished" datetime="2022-08-02T14:06:09+08:00">2022-08-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -226,7 +219,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Robot-Paper-Review/" itemprop="url" rel="index"><span itemprop="name">Robot Paper Review</span></a>
+          <a href="/categories/mathematic/" itemprop="url" rel="index"><span itemprop="name">mathematic</span></a>
         </span>
     </span>
 
@@ -239,8 +232,8 @@
     </span>
     <span class="post-meta-item-text">Waline: </span>
   
-    <a title="waline" href="/2022/06/24/SAGCI-System-paper-review/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/2022/06/24/SAGCI-System-paper-review/" itemprop="commentCount"></span>
+    <a title="waline" href="/2022/08/02/PGS-LCP-solver-conclusion/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2022/08/02/PGS-LCP-solver-conclusion/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -251,18 +244,18 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>2.7k</span>
+      <span>3.1k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>2 mins.</span>
+      <span>3 mins.</span>
     </span>
 </div>
 
-            <div class="post-description">Fun Robot</div>
+            <div class="post-description">A conclusion about a LCP solver</div>
         </div>
       </header>
 
@@ -270,63 +263,183 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><p>Tasks in the real life: unstructured environments.</p>
-<p>Need to learn things quickly. </p>
-<h1 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h1><p>Sample-Efficient, Generalizable, Compositional, and Incremental</p>
-<h1 id="File"><a href="#File" class="headerlink" title="File"></a>File</h1><p>Unified Robot Description Format(URFD)</p>
-<h1 id="Related-works"><a href="#Related-works" class="headerlink" title="Related works"></a>Related works</h1><p>Interactive Perception</p>
-<p>Differential Simulation</p>
-<p>Model-Based Reinforcement Learning</p>
-<h1 id="Model-Established"><a href="#Model-Established" class="headerlink" title="Model Established"></a>Model Established</h1><h2 id="Build-Environment-Initial-Model"><a href="#Build-Environment-Initial-Model" class="headerlink" title="Build Environment Initial Model"></a>Build Environment Initial Model</h2>
-The $t$ th step point clouds: $\{P_t^i\}_{i = 1}^N \in \mathscr{R}^{N \times 3}$
+        <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>The form of the LCP problem is as follows:</p>
 
-Taking advantage of a segmentation model to generate $\{M_t^i\}_{i = 1}^N$, $M_i^t \in \{1, 2, \cdots, K\}$, which help to segment the raw points to $K$ links in the URDF. $\{\mathscr{G}_t^j\}_{j = 1}^ K$ denotes these links. Based on that, using MainfoldPlus to help build meshes.
-
-The joints have 4 types, so we need $\{\mathscr{J}\} \in \mathscr{R}^{K \times K \times 4}$ to represent them. The corresponding joint spatial is $\mathscr{C} \in \mathscr{R}^{K \times K \times 9}$, about axis, origin, and orientation. Form a $ST$ to compose a URDF.   
-
-<h2>Interactive Perception</h2>  
-
-The parameters: $\mathscr{Z} = \{\mathscr{J, C, M, \alpha^{sim} }\}$. The $\alpha^{sim}$ is the physical attributes of the object. $a_t^{IP}$ denotes the move of the $t$th step.
-
-First, in the simulation, we have:
 $$
-\bar{\mathscr{P} }_{t + 1}^i = \mathscr{F}^{sim}(\mathscr{P_t}, \mathscr{Z}, \mathscr{\varepsilon}, a_t^{IP})
+\begin{align}
+Find\ w\ a\\
+w = Aa + b \\
+a^Tw = 0\\
+a \geq 0\\
+w \geq 0
+\end{align}
 $$
 
-Second, in real world, we have:
+<p>To introduce the PGS solver, first, we should take a look at the GS solver to the linear equations:</p>
+<h1 id="Guass-Seidel-Iteration-Solver"><a href="#Guass-Seidel-Iteration-Solver" class="headerlink" title="Guass-Seidel Iteration Solver"></a>Guass-Seidel Iteration Solver</h1><p>Assume we have to find the answer $x$ of the $Ax &#x3D; b$:</p>
+<p>$A$ could be written in the following way:</p>
+
 $$
-\widetilde{\mathscr{P} }_{t+1}^i = \mathscr{F}^{real}(\mathscr{P}_t^i, \mathscr{U}_t^i, \{\mathscr{P}_{t+1}^i\}_{i = 1}^N)
+A = D - L - U
 $$
-The $\{\mathscr{U}_t^i\}_{i = 1}^N$ denotes the scene flow, which is generated from the $\{\{\mathscr{P}_t^i\}_{i = 1}^N, \{\mathscr{P}_{t+1}^i\}_{i = 1}^N\}$
 
-The  $\widetilde{\mathscr{P} }_{t+1}^i$ is the nearest point in the $\{\mathscr{P}_{t+1}^i\}$ of $\{\{\mathscr{U}_t^i\} + \{\mathscr{P}_t^i\}\}$ .
+<p>$D$ is the diagonal matrix, $L$ is the lower triangular matrix, and $U$ is the upper triangular matrix.</p>
+<p>so the original equations are:</p>
 
-
-
-Now consider the optimization of the $\mathscr{Z}$.
-
-The distance between the simulation and the real world is:
 $$
-\mathscr{L}_{t +1} = \frac{1}{N} \sum_{i = 1}^N\|\bar{\mathscr{P} }_{t + 1}^i - \widetilde{\mathscr{P} }_{t+1}^i\|^2
+\begin{align}
+(D -L -U)x &= b \\
+(D - L)x &= Ux + b\\
+x &= (D - L)^{-1}Ux + (D - L)^{-1}b
+\end{align}
 $$
-The $\mathscr{F}^{sim}$ is differentiable, so we  could:
-$$
-\mathscr{Z}' = \mathscr{Z} - \lambda\frac{\partial \mathscr{L}_{t +1} }{\partial \mathscr{Z} }
-$$
-Remember $\mathscr{Z} = \{\mathscr{J, C, M, \alpha^{sim} }\}$, so it is actually optimizing these 4 matrixes. Reminding that the $\alpha^{sim}$ should be combined with $a_t^{IP}$ to calculate the joint state change $\delta q$.
 
-The improvement is:
+<p>Using the thought of iteration, the request relationship is:</p>
+
 $$
-r_t = \mathscr{L}_{t+ 1}(\mathscr{Z}) - \mathscr{L}_{t+ 1}(\mathscr{Z'})
+\begin{align}
+x^{k + 1} = (D - L)^{-1}Ux^k + (D - L)^{-1}b
+\end{align}
 $$
-During the simulation, the model adopted is Nimble, which is differentiable. 
 
-The point is, instead of just adopting the Nimble's prediction $s_{t+1}^{Nim}$, the model calculates the transition $\delta_{s_{t + 1} }$ from $s_t^{sim}, a_t, s_{t + 1}^{Nim}$. Then the result $s_{t +1}^{Nim} + \delta_{s_{t+1} }$ is the real $s_{t + 1}^{sim}$
+<p>The necessary and sufficient condition of the convergence of this method is $p(A) &lt; 1$.</p>
+<p>Now let’s take a look at the PGS method.</p>
+<h1 id="Projected-Gauss-Seidel-Solver"><a href="#Projected-Gauss-Seidel-Solver" class="headerlink" title="Projected Gauss-Seidel Solver"></a>Projected Gauss-Seidel Solver</h1><p>If we return the LCP problem to the original form from the iteration equation of the GS method, we have:</p>
 
-The backward propagation is just normal chain rules.
+$$
+\begin{align}
+(D - L)x^{k+1} + b - Ux^k &\geq 0 \\
+x^{k + 1} &\geq 0 \\
+(x^{k + 1})^T((D - L)x^{k+1} + b - Ux^k) &= 0
+\end{align}
+$$
 
-<h1 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h1><p>The judgment standard is mIoU, segmentation Acc., Rot, and Tran error.</p>
-<p>sf + noise and sf are better than the Initial model, sf + ground truth is the best.</p>
+<p>Let $z^k &#x3D; b - Ux^k$, we have:</p>
+
+$$
+\begin{align}
+(D - L)x^{k+1} + z^k &\geq 0 \\
+x^{k + 1} &\geq 0 \\
+(x^{k + 1})^T((D - L)x^{k+1} + z^k) &= 0
+\end{align}
+$$
+
+<p>which means:</p>
+
+$$
+\begin{align}
+\min \{x^{k+1}_i, ((D - L)x^{k+1} + z^k)_i\} = 0, i = 0,1, \cdots, n
+\end{align}
+$$
+
+<p>The equivalence of this form is:</p>
+
+$$
+\max \{0, x^{k+1}_i -((D - L)x^{k+1} + z^k)_i\} = x^{k + 1}_i, i = 0, 1, \cdots, n
+$$
+
+<p>Let $m^k_i &#x3D; x^{k+1}_i -((D - L)x^{k+1} + z^k)_i$, we have:</p>
+
+$$
+\begin{align}
+x^{k + 1}_i = \max \{0, m^k_i\}
+\end{align}
+$$
+
+<p>There is two situations of the value of the $m^k_i$, the first is $m_i^k &lt; 0$, which implies that $x_i^{k+1} &#x3D; 0$. The other situation is $m_i^{k+1} \geq 0$, we could go deep into this situation.</p>
+<p>Now we know that $x_i^{k+1} &#x3D; m_i^{k} &#x3D; x^{k+1}_i -((D - L)x^{k+1} + z^k)_i$, then $((D - L)x^{k+1} + z^k)_i$ should be $0$.</p>
+
+$$
+\begin{align}
+((D - L)x^{k+1} + z^k)_i &= 0\\
+((D - L)x^{k+1} + b - Ux^k)_i &= 0\\
+x^{k + 1} &= (D - L)^{-1}(Ux^k - b) \\
+x^{k + 1} &= (D - L)^{-1}Ux^k - (D - L)^{-1}b \\
+\end{align}
+$$
+
+<p>Let $c_i^k &#x3D; ((D - L)^{-1}Ux^k - (D - L)^{-1}b)_i$, the conclusion is:</p>
+
+$$
+\begin{align}
+x_i^{k+1} = \max \{0, m_i^k\} = \max \{0, c_i^k\}
+\end{align}
+$$
+
+<p>So:</p>
+
+$$
+\begin{align}
+x_i^{k+1} = \max \{0, (D - L)^{-1}Ux_i^k - (D - L)^{-1}b_i\}, i = 0, 1, \cdots, n
+\end{align}
+$$
+
+<h1 id="Using-the-PGS-method-to-solve-the-MLCP-problem"><a href="#Using-the-PGS-method-to-solve-the-MLCP-problem" class="headerlink" title="Using the PGS method to solve the MLCP problem"></a>Using the PGS method to solve the MLCP problem</h1><p>Basically speaking, the Mixed LCP problem is:</p>
+
+$$
+\begin{align}
+Find\ w\ x\\
+lo \leq x\ \leq hi\\
+w = Ax + b \\
+\end{align}
+$$
+
+<p>There are $3$ situations of the $a_i$:</p>
+
+$$
+\begin{align}
+&x_i = lo_i\ \ w_i \geq 0 \\
+&x_i = hi_i\ \ w_i \leq 0 \\
+lo_i < &x_i < hi_i\ \ w  = 0
+\end{align}
+$$
+
+<p>Using the thought of iteration, we have:</p>
+
+$$
+\begin{align}
+w^{k+1} &= (D - L)x^{k+1} + z^k \\
+x_i^{k+1} &= lo_i\ \ w_i^{k+1} \geq 0 \\
+x_i^{k+1} &= hi_i\ \ w_i^{k+1} \leq 0 \\
+lo_i < x_i^{k+1} &< hi_i\ \ w_i^{k+1}  = 0
+\end{align}
+$$
+
+<p>$z^k &#x3D; b - Ux^k$.</p>
+<p>In the first situation, we have:</p>
+
+$$
+\begin{align}
+(x_i^{k+1} - lo_i)w_i^{k+1} = 0
+\end{align}
+$$
+
+<p>which means:</p>
+
+$$
+\min \{(x_i^{k+1} - lo_i), w_i^{k+1}\} = 0
+$$
+
+<p>Using the same method as the above section. we have:</p>
+
+$$
+x_i^{k+1} = \max \{lo_i, (D - L)^{-1}Ux^k - (D - L)^{-1}b\}
+$$
+
+<p>Considering the upper bound of the $x$, we must add a constraint:</p>
+
+$$
+x_i^{k+1} = \min \{\max \{lo_i, (D - L)^{-1}Ux^k - (D - L)^{-1}b\}, hi_i\}
+$$
+
+<p>If we start from the second situation, we will get:</p>
+
+$$
+x_i^{k+1} = \max \{\min \{hi_i, (D - L)^{-1}Ux^k - (D - L)^{-1}b\}, lo_i\}
+$$
+
+<p>It is the same thing.</p>
+<p>By the way, the sufficient condition of the convergence of this method is $A$ is positive definite based on this paper <a target="_blank" rel="noopener" href="https://optimization-online.org/2007/06/1675/">An Algorithm for the Fast Solution of Linear Complementarity Problems</a>.</p>
 
     </div>
 
@@ -336,19 +449,18 @@ The backward propagation is just normal chain rules.
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
-              <a href="/tags/Robot/" rel="tag"># Robot</a>
+              <a href="/tags/LCP-Solver/" rel="tag"># LCP Solver</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/2022/07/24/Nimble-source-code-reading-DantzigBoxedLcpSolver/" rel="prev" title="Nimble source code reading: DantzigBoxedLcpSolver">
+                  <i class="fa fa-chevron-left"></i> Nimble source code reading: DantzigBoxedLcpSolver
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/07/05/Build-a-Compiler-from-Scratch(IR%20Basic)/" rel="next" title="Build a Compiler from Scratch（IR Basic）">
-                  Build a Compiler from Scratch（IR Basic） <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -417,7 +529,7 @@ The backward propagation is just normal chain rules.
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"blog-waline-server.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"placeholder":"Hello","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/2022/06/24/SAGCI-System-paper-review/"}</script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"blog-waline-server.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"placeholder":"Hello","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/2022/08/02/PGS-LCP-solver-conclusion/"}</script>
 <link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
 <script>
 document.addEventListener('page:loaded', () => {
